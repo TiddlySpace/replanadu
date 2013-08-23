@@ -14,7 +14,7 @@ TwiddlersCount.prototype.search = function() {
 
 TwiddlersCount.prototype._init = function() {
 	this.title = $('#title').text();;
-}
+};
 
 TwiddlersCount.prototype._getFollowers = function() {
 	var context = this;
@@ -41,7 +41,7 @@ TwiddlersCount.prototype.addButton = function(value) {
 	button.addClass('twiddlers');
 	button.addClass('twiddlerall');
 	$('#container').append(button);
-}
+};
 
 TwiddlersCount.prototype.updateButton = function(value) {
 	var button = $('#twiddlers');
@@ -83,7 +83,7 @@ TwiddlersCount.prototype._doGET = function(url, success, error) {
 };
 
 TwiddlersCount.prototype._ajaxError = function(xhr, err, exc) {
-	console.log('Error', err, exc);
+	console.log('ERROR: ', err, exc);
 };
 
 $(document).ready(function () {

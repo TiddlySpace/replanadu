@@ -15,17 +15,8 @@
         <script src="/bags/replanadu_public/tiddlers/modernizr-2.6.2.min.js"></script>
 
         <script id="tiddler-template" type="text/x-handlebars-template">
+            <button>Edit</button>
             {{{ html }}}
-        </script>
-        <script id="related-list-template" type="text/x-handlebars-template">
-            <ul>
-                {{#each tiddlers}}
-                <li>
-                    <img src="{{ get_site_icon_uri this.bag }}" />
-                    <a href="">@{{ this.modifier }}</a> at <a href="">@{{ get_space_name this.bag }}</a>
-                </li>            
-                {{/each}}
-            </ul>
         </script>
     </head>
     <body>
@@ -35,16 +26,24 @@
         <header>
             <script id="tiddler-title-template" type="text/x-handlebars-template">
                 <h1 id="tiddler-title" class="title">
-                    <a href="{{ url }}">{{{ title }}}</a>
+                    <a href="{{ uri }}">{{{ title }}}</a>
                 </h1>
             </script>
         </header>
-
         <section>
             <article id="local"></article>
         </section>
-        <section>
-            <section id="relatedlist"></section>
+        <section id="relatedlist">
+            <script id="related-list-template" type="text/x-handlebars-template">
+                <ul>
+                    {{#each tiddlers}}
+                    <li>
+                        <img src="{{ get_site_icon_uri this.bag }}" />
+                        <a href="">@{{ this.modifier }}</a> at <a href="">@{{ get_space_name this.bag }}</a>
+                    </li>            
+                    {{/each}}
+                </ul>
+            </script>            
         </section>
         <script src="/bags/common/tiddlers/jquery.js"></script>
         <script src="/status.js"></script>

@@ -3,13 +3,13 @@ function Twiddlers() {
 	this.title = undefined;
 	this.spaceName = tiddlyweb.status.space.name;
 	this._init();
+	this.titleTemplate = this._getTemplate('#tiddler-title-template');
 	this.tiddlerTemplate = this._getTemplate('#tiddler-template');
 	this.listTemplate = this._getTemplate('#related-list-template');
 }
 
 Twiddlers.prototype._init = function() {
 	this._setTitle();
-	$('#tiddler-title').text(this.title);
 }
 
 Twiddlers.prototype._getTemplate = function(id) {
@@ -31,6 +31,7 @@ Twiddlers.prototype._displayRelated = function(tiddlers) {
 };
 
 Twiddlers.prototype._displayTiddler = function(tiddler) {
+	$('header').html(this.titleTemplate(tiddler));
 	$('#local').html(this.tiddlerTemplate({ title: tiddler.title, html: tiddler.render }))
 };
 
@@ -39,14 +40,24 @@ Twiddlers.prototype._getLocalTiddler = function(title) {
 	var success = function(data) {
 		context._displayTiddler(data);
 	};
-	this._doGET('/' + encodeURIComponent(title) + '?render=1', success, this._ajaxError);
+	this._getTiddler(title, success);
 };
 
+Twiddlers.prototype._loadTiddler = function(title) {
+	var context = this;
+	var success = function(data) {
+		
+	};
+	this._getTiddler(title, success);
+};
+
+Twiddlers.prototype._getTiddler = function(title, success) {
+	this._doGET('/' + encodeURIComponent(title) + '?render=1', success, this._ajaxError);
+};
 
 Twiddlers.prototype._search = function(title, tag) {
 	var context = this;
 	var success = function(data, status, xhr) {
-		console.log(data);
 		context._displayRelated(data);
 	};
 	var url = '/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag;
