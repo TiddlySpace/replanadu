@@ -28,8 +28,9 @@ Twiddlers.prototype._setTitle = function() {
 };
 
 Twiddlers.prototype._displayRelated = function(tiddlers) {
-	$('#relatedlist').empty();
-	$('#relatedlist').append(this.listTemplate({ tiddlers: tiddlers }));
+    var list = $('#relatedlist');
+    list.empty();
+    list.append(this.listTemplate({ tiddlers: tiddlers }));
 };
 
 Twiddlers.prototype._displayTiddler = function(tiddler) {
@@ -45,9 +46,9 @@ Twiddlers.prototype._getLocalTiddler = function(title) {
 	this._getTiddler(title, success);
 };
 
-Twiddlers.prototype.loadTiddler = function(uri, bag) {
+Twiddlers.prototype.loadTiddler = function(uri, elem) {
 	var success = function(data) {
-		$('#tiddler_' + bag).html(data.render);
+		$(elem).html(data.render);
 	};
     var match = 'tiddlyspace.com/';
     uri = uri.substring(uri.indexOf(match) + match.length) + '?render=1';
@@ -118,4 +119,8 @@ $(document).ready(function () {
 	Handlebars.registerHelper('get_site_icon_uri', function(context, options) {
 	    return 'http://' + context.split('_')[0] + '.tiddlyspace.com/SiteIcon';
 	});		
+	$(document).on('click', '.tiddler-button', function() {
+		var uri = $(this).data('uri');
+		app.loadTiddler(uri, $(this).parent().children('article'));
+	});
 });
