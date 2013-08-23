@@ -2,8 +2,9 @@
 function TwiddlersCount() {
 	this.baseUrl = '';
 	this.title = undefined;
-	this.spaceName = 'replanadu';
-	this.targetURI = 'replanadu.html';
+	this.spaceName = tiddlyweb.status.space.name;
+	this.targetURI = window.location.href.match(/tiddlyspace/) ?
+		'replanadu' : 'replanadu.html';
 	this._init();
 }
 
@@ -14,15 +15,6 @@ TwiddlersCount.prototype.count = function() {
 
 TwiddlersCount.prototype._init = function() {
 	this.title = $('#title').text();;
-	this._setSpaceName();
-}
-
-TwiddlersCount.prototype._setSpaceName = function() {
-	var domains = document.location.hostname.split('.');
-	if (domains.length > 1) {
-		this.spaceName = domains[0];
-		this.targetURI = 'replanadu';
-	}
 }
 
 TwiddlersCount.prototype.addButton = function(count) {
