@@ -47,7 +47,7 @@ Twiddlers.prototype._getLocalTiddler = function(title) {
 
 Twiddlers.prototype.loadTiddler = function(uri, elem) {
 	var success = function(data) {
-		$(elem).append(data.render);
+		$(elem).html(data.render);
 	};
     var match = 'tiddlyspace.com/';
     uri = uri.substring(uri.indexOf(match) + match.length) + '?render=1';
@@ -120,6 +120,6 @@ $(document).ready(function () {
 	});		
 	$(document).on('click', '.tiddler-button', function() {
 		var uri = $(this).data('uri');
-		app.loadTiddler(uri, $(this).parent());
+		app.loadTiddler(uri, $(this).parent().children('article'));
 	});
 });
