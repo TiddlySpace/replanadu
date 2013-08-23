@@ -12,7 +12,7 @@ $v_flow: 26px;
 
 body {
     width: 1080px;
-    margin: 80px auto 0;
+    margin: 0 auto;
     font-size: 18px;
 }
 
@@ -23,6 +23,10 @@ body {
         text-decoration: none;
         color: $black;
     }
+}
+
+header {
+    margin: (40px + 2* $v_flow) 0 (2*$v_flow);
 }
 
 .wrapper {
@@ -59,7 +63,15 @@ body {
             height: 2 * $v_flow;
             position: absolute;
             right: 0;
-            top: 50px;
+            top: 42px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &.open {
+            background: url(/up-tsgrey.png) no-repeat transparent;
         }
     }
 }
