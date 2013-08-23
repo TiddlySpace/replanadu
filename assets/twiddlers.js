@@ -60,6 +60,7 @@ Twiddlers.prototype._getTiddler = function(title, success) {
 };
 
 // XXX: somewhat dupe from TwiddlersCount!
+// Only do this if the currentUser is not GUEST
 Twiddlers.prototype._getFollowers = function() {
 	if (this.followers.length == 0) {
 		var context = this;
