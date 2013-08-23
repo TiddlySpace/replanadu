@@ -10,11 +10,12 @@ function Twiddlers() {
 
 Twiddlers.prototype._init = function() {
 	this._setTitle();
-}
+    this.getTwiddlers();
+};
 
 Twiddlers.prototype._getTemplate = function(id) {
 	return Handlebars.compile($(id).html());		
-}
+};
 
 Twiddlers.prototype.getTwiddlers = function() {
 	var tag = '@' + this.spaceName;
@@ -43,12 +44,13 @@ Twiddlers.prototype._getLocalTiddler = function(title) {
 	this._getTiddler(title, success);
 };
 
-Twiddlers.prototype._loadTiddler = function(title) {
-	var context = this;
+Twiddlers.prototype.loadTiddler = function(uri, bag) {
 	var success = function(data) {
-		
+		$('#tiddler_' + bag).html(data.render);
 	};
-	this._getTiddler(title, success);
+    var match = 'tiddlyspace.com/';
+    uri = uri.substring(uri.indexOf(match) + match.length) + '?render=1';
+    this._doGET(uri, success, this._ajaxError);
 };
 
 Twiddlers.prototype._getTiddler = function(title, success) {
@@ -76,8 +78,9 @@ Twiddlers.prototype._doGET = function(url, success, error) {
 	});	
 };
 
+var app = undefined;
 $(document).ready(function () {
-	new Twiddlers().getTwiddlers();
+    app = new Twiddlers();
 	Handlebars.registerHelper('get_space_name', function(context, options) {
 	    return context.split('_')[0];
 	});	
@@ -85,4 +88,3 @@ $(document).ready(function () {
 	    return 'http://' + context.split('_')[0] + '.tiddlyspace.com/SiteIcon';
 	});		
 });
-

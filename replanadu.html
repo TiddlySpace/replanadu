@@ -19,6 +19,8 @@
                 <li>
                     <img src="{{ get_site_icon_uri this.bag }}" />
                     <a href="">@{{ this.modifier }}</a> at <a href="">@{{ get_space_name this.bag }}</a>
+                    <button onclick="app.loadTiddler('{{ this.uri }}', '{{ this.bag }}')">+</button>
+                    <article id='tiddler_{{ this.bag }}'></article>
                 </li>            
                 {{/each}}
             </ul>
