@@ -4,18 +4,62 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 $black: #000b0f;
+$v_flow: 26px;
 
 @import "compass/reset";
 @import "tsbar";
 @import "tiddler";
 
 body {
-    width: 960px;
+    width: 1080px;
     margin: 80px auto 0;
     font-size: 18px;
+}
+
+.title {
+    font-size: 68px;
+
+    a {
+        text-decoration: none;
+        color: $black;
+    }
+}
+
+.wrapper {
+    position: relative;
 }
 
 .original {
     width: 600px;
     position: relative;
+}
+
+.pairs {
+    position: absolute;
+    right: 0; top: 0;
+    width: 454px;
+
+    li {
+        border-bottom: 1px dashed rgba(0,0,0,0.2);
+        padding: $v_flow / 2;
+        position: relative;
+
+        img {
+            width: $v_flow * 3;
+            height: $v_flow * 3;
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+        }
+
+        button {
+            background: url(/down-tsgrey.png) no-repeat transparent;
+            border: 0;
+            outline: none;
+            width: 2 * $v_flow;
+            height: 2 * $v_flow;
+            position: absolute;
+            right: 0;
+            top: 50px;
+        }
+    }
 }

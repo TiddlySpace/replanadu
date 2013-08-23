@@ -9,16 +9,18 @@
         <title>Replanadu</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href="/bags/common/tiddlers/normalize.css">
         <link rel="stylesheet" href="/bags/replanadu_public/tiddlers/replanadu.css">
         <script src="/bags/replanadu_public/tiddlers/modernizr-2.6.2.min.js"></script>
-
+        <script id="tiddler-template" type="text/x-handlebars-template">
+            {{{ html }}}
+        </script>
         <script id="related-list-template" type="text/x-handlebars-template">
             <ul>
                 {{#each tiddlers}}
                 <li>
+                    <img src="{{ get_site_icon_uri this.bag }}" />
                     <a href="">@{{ this.modifier }}</a> at <a href="">@{{ get_space_name this.bag }}</a>
                 </li>            
                 {{/each}}
@@ -29,8 +31,8 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <h1 id="tiddler-title"></h1>
         <section>
-            <h1>Twiddlers</h1>
             <article id="local"></article>
         </section>
         <section>
