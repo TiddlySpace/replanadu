@@ -17,7 +17,7 @@ Twiddlers.prototype._getListTemplate = function() {
 Twiddlers.prototype.getTwiddlers = function() {
 	var tag = '@' + this.spaceName;
 	this._search(this.title, tag);	
-	// this._getLocalTiddler(this.title);
+	this._getLocalTiddler(this.title);
 };
 
 Twiddlers.prototype._setTitle = function() {
