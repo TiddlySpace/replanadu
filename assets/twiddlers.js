@@ -33,15 +33,14 @@ Twiddlers.prototype._generateRelated = function(tiddlers) {
 	return this.listTemplate({ tiddlers: tiddlers });
 };
 
-Twiddlers.prototype._displayTiddler = function(tiddler, place) {
-	place.html(this.tiddlerTemplate({ title: tiddler.title, html: tiddler.render }))
+Twiddlers.prototype._displayTiddler = function(tiddler) {
+	$('#local').html(this.tiddlerTemplate({ title: tiddler.title, html: tiddler.render }))
 };
 
 Twiddlers.prototype._getLocalTiddler = function(title) {
-	var context = this,
-		place = $('#local');
+	var context = this;
 	var success = function(data) {
-		context._displayTiddler(data, place);
+		context._displayTiddler(data);
 	};
 	this._doGET('/' + encodeURIComponent(title) + '?render=1', success, this._ajaxError);
 };
