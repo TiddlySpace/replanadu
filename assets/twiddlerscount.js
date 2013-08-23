@@ -23,18 +23,22 @@
 	};
 
 	TwiddlersCount.prototype._getFollowers = function() {
-		var context = this;
-		var success = function(data, status, xhr) {
-			var followers = $.trim(data).split('\n');
-			followers = $.map(followers, function(item) {
-				return item.replace(/^@/, '');
-			});
-			context._search(followers);
-		};
-		var url = '/search.txt?q=bag:' + this.currentUser
-			+ '_public%20tag:follow'
-			+ '%20_limit:999';
-		this._doGET(url, success, this._ajaxError);
+		if (this.currentUser !== 'GUEST') {
+			var context = this;
+			var success = function(data, status, xhr) {
+				var followers = $.trim(data).split('\n');
+				followers = $.map(followers, function(item) {
+					return item.replace(/^@/, '');
+				});
+				context._search(followers);
+			};
+			var url = '/search.txt?q=bag:' + this.currentUser
+				+ '_public%20tag:follow'
+				+ '%20_limit:999';
+			this._doGET(url, success, this._ajaxError);
+		} else {
+			this._search([]);
+		}
 	};
 
 	TwiddlersCount.prototype.addButton = function(value) {
@@ -88,7 +92,9 @@
 		var context = this;
 		var allSuccess = function(data, status, xhr) {
 			context.addButton($.trim(data).split('\n').length);
-			context._followSearch(followers);
+			if (followers.length > 0) {
+				context._followSearch(followers);
+			}
 		};
 		var allUrl = '/search.txt?q=title:"' + encodeURIComponent(this.title) +
 			'"';
