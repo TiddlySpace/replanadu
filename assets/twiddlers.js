@@ -19,6 +19,21 @@ Twiddlers.prototype._setTitle = function() {
 	this.title = document.location.hash.substring(1);
 };
 
+Twiddlers.prototype._displayRelated = function(tiddlers) {
+	$('#relatedlist').append(this._generateRelated(tiddlers));
+};
+
+Twiddlers.prototype._generateRelated = function(tiddlers) {
+	var list = '<ul>'
+	for (var i=0,len=tiddlers.length; i < len; i++) {
+		var tiddler = tiddlers[i];
+		// tiddler
+		list += '<li>' + tiddler.title +'</li>';
+	}
+	list += '</ul>'
+	return list;
+}
+
 Twiddlers.prototype._displayTiddler = function(tiddlerData, place) {
 	place.html(tiddlerData.render);
 	place.prepend('<h1>' + tiddlerData.title + '</h1>');
@@ -38,6 +53,7 @@ Twiddlers.prototype._search = function(title, tag) {
 	var context = this;
 	var success = function(data, status, xhr) {
 		console.log(data);
+		context._displayRelated(data);
 	};
 	var url = '/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag;
 	this._doGET(url, success, this._ajaxError);
