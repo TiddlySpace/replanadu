@@ -9,6 +9,7 @@ function Twiddlers() {
 
 Twiddlers.prototype._init = function() {
 	this._setTitle();
+	$('#tiddler-title').text(this.title);
 }
 
 Twiddlers.prototype._getTemplate = function(id) {
@@ -26,11 +27,7 @@ Twiddlers.prototype._setTitle = function() {
 };
 
 Twiddlers.prototype._displayRelated = function(tiddlers) {
-	$('#relatedlist').append(this._generateRelated(tiddlers));
-};
-
-Twiddlers.prototype._generateRelated = function(tiddlers) {
-	return this.listTemplate({ tiddlers: tiddlers });
+	$('#relatedlist').append(this.listTemplate({ tiddlers: tiddlers }));
 };
 
 Twiddlers.prototype._displayTiddler = function(tiddler) {
