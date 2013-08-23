@@ -19,11 +19,11 @@
             <ul>
                 {{#each tiddlers}}
                 <li>
-                    <a href="">@{{ this.modifier }}</a> at <a href="">@{{ this.modifier }}</a>
+                    <a href="">@{{ this.modifier }}</a> at <a href="">@{{ get_space_name this.bag }}</a>
                 </li>            
                 {{/each}}
             </ul>
-        </script>        
+        </script>
     </head>
     <body>
         <!--[if lt IE 7]>

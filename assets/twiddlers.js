@@ -71,5 +71,8 @@ Twiddlers.prototype._doGET = function(url, success, error) {
 
 $(document).ready(function () {
 	new Twiddlers().getTwiddlers();
+	Handlebars.registerHelper('get_space_name', function(context, options) {
+	    return context.split('_')[0];
+	});	
 });
 
