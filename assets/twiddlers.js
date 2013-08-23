@@ -74,5 +74,8 @@ $(document).ready(function () {
 	Handlebars.registerHelper('get_space_name', function(context, options) {
 	    return context.split('_')[0];
 	});	
+	Handlebars.registerHelper('get_site_icon_uri', function(context, options) {
+	    return 'http://' + context.split('_')[0] + '.tiddlyspace.com/SiteIcon';
+	});		
 });
 
