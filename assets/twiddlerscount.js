@@ -35,7 +35,7 @@
 
 	TwiddlersCount.prototype.addButton = function(value) {
 		var button = $("<a>Twiddlers</a>");
-		button.attr('id', '#twiddlers');
+		button.attr('id', 'twiddlers');
 		button.attr('target', '_blank');
 		button.attr('data-twiddlerall', value);
 		button.attr('href', '/' + this.targetURI + '#'
