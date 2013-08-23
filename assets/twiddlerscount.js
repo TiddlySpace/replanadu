@@ -24,7 +24,7 @@ TwiddlersCount.prototype._setSpaceName = function() {
 
 TwiddlersCount.prototype.addButton = function(count) {
 	var button = $("<a>Twiddlers(" + count + ")</a>");
-	button.attr('href', '/replanadu#' + this.title);
+	button.attr('href', '/replanadu#' + encodeURIComponent(this.title));
 	$('#container').append(button);
 }
 
@@ -34,7 +34,7 @@ TwiddlersCount.prototype._search = function(title, tag) {
 		console.log(data);
 		context.addButton(data.length);
 	};
-	$.getJSON('/search.json?q=title:"' + title + '" tag:' + tag, success, this._ajaxError);
+	$.getJSON('/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag, success, this._ajaxError);
 };
 
 TwiddlersCount.prototype._ajaxError = function(xhr, err, exc) {
