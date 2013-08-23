@@ -2,14 +2,18 @@
 function TwiddlersCount() {
 	this.baseUrl = '';
 	this.spaceName = 'replanadu';
-	this._setSpaceName();
+	this._init();
 }
 
 TwiddlersCount.prototype.go = function() {
-	var title =  $('#title').text();
 	var tag = '@' + this.spaceName;
-	this._search(title, tag);
+	this._search(this.title, tag);
 };
+
+TwiddlersCount.prototype._init = function() {
+	this.title = $('#title').text();;
+	this._setSpaceName();
+}
 
 TwiddlersCount.prototype._setSpaceName = function() {
 	var domains = document.location.hostname.split('.');
@@ -19,7 +23,8 @@ TwiddlersCount.prototype._setSpaceName = function() {
 }
 
 TwiddlersCount.prototype.addButton = function(count) {
-	var button = $("<button>Twiddlers(" + count + ")</button>");
+	var button = $("<a>Twiddlers(" + count + ")</a>");
+	button.attr('href', '/replanadu#' + this.title);
 	$('#container').append(button);
 }
 
