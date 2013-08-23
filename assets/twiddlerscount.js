@@ -1,11 +1,15 @@
 (function () {
 	"use strict";
 
+	var allImage = '/bags/replanadu_public/tiddlers/replanadu-white.png';
+	var followImage = '/bags/replanadu_public/tiddlers/replanadu-gold.png';
+
 	function TwiddlersCount() {
 		this.baseUrl = '';
 		this.title = undefined;
 		this.currentUser = tiddlyweb.status.username;
-		this.targetURI = window.location.href.match(/tiddlyspace/)
+		this.targetURI = window.location.href.match(
+			tiddlyweb.status.server_host.host)
 				? 'replanadu' : 'replanadu.html';
 		this._init();
 	}
@@ -34,7 +38,12 @@
 	};
 
 	TwiddlersCount.prototype.addButton = function(value) {
-		var button = $("<a>Twiddlers</a>");
+		var img = $('<img>');
+		var button = $('<a>');
+		img.attr({
+			src: allImage,
+			alt: 'twinned tiddlers'
+		});
 		button.attr('id', 'twiddlers');
 		button.attr('target', '_blank');
 		button.attr('data-twiddlerall', value);
@@ -42,13 +51,27 @@
 				+ encodeURIComponent(this.title));
 		button.addClass('twiddlers');
 		button.addClass('twiddlerall');
+		// using CSS becuase we are a remote include widget
+		button.css({
+			position: 'absolute',
+			border: 0,
+			background: 'transparent',
+			top: '1px',
+			right: '80px',
+			opacity: 0.5
+		});
+		// XXX: set opacity on hover
+
+		button.append(img);
 		$('#container').append(button);
 	};
 
 	TwiddlersCount.prototype.updateButton = function(value) {
 		var button = $('#twiddlers');
+		var img = button.find('img');
 		button.attr('data-tiddlerfollow', value);
 		button.addClass('twiddlerfollow');
+		img.attr('src', followImage);
 	};
 
 	TwiddlersCount.prototype._followSearch = function(followers) {
