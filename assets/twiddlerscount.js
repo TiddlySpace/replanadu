@@ -2,6 +2,7 @@
 function TwiddlersCount() {
 	this.baseUrl = '';
 	this.spaceName = 'replanadu';
+	this.targetURI = 'replanadu.html';
 	this._init();
 }
 
@@ -19,12 +20,13 @@ TwiddlersCount.prototype._setSpaceName = function() {
 	var domains = document.location.hostname.split('.');
 	if (domains.length > 1) {
 		this.spaceName = domains[0];
+		this.targetURI = 'replanadu';
 	}
 }
 
 TwiddlersCount.prototype.addButton = function(count) {
 	var button = $("<a>Twiddlers(" + count + ")</a>");
-	button.attr('href', '/replanadu#' + encodeURIComponent(this.title));
+	button.attr('href', '/' + this.targetURI + '#' + encodeURIComponent(this.title));
 	$('#container').append(button);
 }
 
