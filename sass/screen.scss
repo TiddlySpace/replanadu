@@ -3,4 +3,19 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
+$black: #000b0f;
+
 @import "compass/reset";
+@import "tsbar";
+@import "tiddler";
+
+body {
+    width: 960px;
+    margin: 80px auto 0;
+    font-size: 18px;
+}
+
+.original {
+    width: 600px;
+    position: relative;
+}
