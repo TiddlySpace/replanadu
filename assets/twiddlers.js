@@ -27,19 +27,10 @@ Twiddlers.prototype._displayTiddler = function(tiddlerData, place) {
 Twiddlers.prototype._getLocalTiddler = function(title) {
 	var context = this,
 		place = $('#local');
-
 	var success = function(data) {
 		context._displayTiddler(data, place);
 	};
-
-	$.ajax({
-	    url: '/' + encodeURIComponent(title) + '?render=1',
-        type: 'GET', 
-        success: success,
-        error: this._ajaxError,
-        contentType: 'application/json',
-        dataType: 'json'	
-	});
+	this._doGET('/' + encodeURIComponent(title) + '?render=1', success, this._ajaxError);
 };
 
 
@@ -49,15 +40,19 @@ Twiddlers.prototype._search = function(title, tag) {
 		console.log(data);
 	};
 	var url = '/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag;
+	this._doGET(url, success, this._ajaxError);
+};
+
+Twiddlers.prototype._doGET = function(url, success, error) {
 	$.ajax({
 	    url: url,
         type: 'GET', 
         success: success,
-        error: this._ajaxError,
+        error: error,
         headers: { 'X-ControlView': 'false' },
         contentType: 'application/json',
         dataType: 'json'	
-	});
+	});	
 };
 
 $(document).ready(function () {

@@ -35,10 +35,19 @@ TwiddlersCount.prototype.addButton = function(count) {
 TwiddlersCount.prototype._search = function(title, tag) {
 	var context = this;
 	var success = function(data, status, xhr) {
-		console.log(data);
 		context.addButton(data.length);
+		console.log(data);
 	};
-	$.getJSON('/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag, success, this._ajaxError);
+	var url = '/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag;
+	$.ajax({
+	    url: url,
+        type: 'GET', 
+        success: success,
+        error: this._ajaxError,
+        headers: { 'X-ControlView': 'false' },
+        contentType: 'application/json',
+        dataType: 'json'	
+	});	
 };
 
 TwiddlersCount.prototype._ajaxError = function(xhr, err, exc) {
