@@ -1,12 +1,13 @@
 
 function TwiddlersCount() {
 	this.baseUrl = '';
+	this.title = undefined;
 	this.spaceName = 'replanadu';
 	this.targetURI = 'replanadu.html';
 	this._init();
 }
 
-TwiddlersCount.prototype.go = function() {
+TwiddlersCount.prototype.count = function() {
 	var tag = '@' + this.spaceName;
 	this._search(this.title, tag);
 };
@@ -44,5 +45,5 @@ TwiddlersCount.prototype._ajaxError = function(xhr, err, exc) {
 };
 
 $(document).ready(function () {
-	new TwiddlersCount().go();
+	new TwiddlersCount().count();
 });
