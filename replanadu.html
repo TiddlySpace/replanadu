@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="/bags/replanadu_public/tiddlers/replanadu.css">
         <script src="/bags/replanadu_public/tiddlers/modernizr-2.6.2.min.js"></script>
 
+        <script id="tiddler-template" type="text/x-handlebars-template">
+            <h1>{{ title }}</h2>
+            {{{ html }}}
+        </script>
+
         <script id="related-list-template" type="text/x-handlebars-template">
             <ul>
                 {{#each tiddlers}}

@@ -3,15 +3,16 @@ function Twiddlers() {
 	this.title = undefined;
 	this.spaceName = tiddlyweb.status.space.name;
 	this._init();
-	this.listTemplate = this._getListTemplate();
+	this.tiddlerTemplate = this._getTemplate('#tiddler-template');
+	this.listTemplate = this._getTemplate('#related-list-template');
 }
 
 Twiddlers.prototype._init = function() {
 	this._setTitle();
 }
 
-Twiddlers.prototype._getListTemplate = function() {
-	return Handlebars.compile($('#related-list-template').html());		
+Twiddlers.prototype._getTemplate = function(id) {
+	return Handlebars.compile($(id).html());		
 }
 
 Twiddlers.prototype.getTwiddlers = function() {
@@ -32,9 +33,8 @@ Twiddlers.prototype._generateRelated = function(tiddlers) {
 	return this.listTemplate({ tiddlers: tiddlers });
 };
 
-Twiddlers.prototype._displayTiddler = function(tiddlerData, place) {
-	place.html(tiddlerData.render);
-	place.prepend('<h1>' + tiddlerData.title + '</h1>');
+Twiddlers.prototype._displayTiddler = function(tiddler, place) {
+	place.html(this.tiddlerTemplate({ title: tiddler.title, html: tiddler.render }))
 };
 
 Twiddlers.prototype._getLocalTiddler = function(title) {
