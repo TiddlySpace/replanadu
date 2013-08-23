@@ -27,6 +27,7 @@ TwiddlersCount.prototype._setSpaceName = function() {
 
 TwiddlersCount.prototype.addButton = function(count) {
 	var button = $("<a>Twiddlers(" + count + ")</a>");
+	button.attr('target', '_blank');
 	button.attr('href', '/' + this.targetURI + '#' + encodeURIComponent(this.title));
 	$('#container').append(button);
 }
