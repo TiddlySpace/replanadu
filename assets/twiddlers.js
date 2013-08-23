@@ -116,7 +116,7 @@ $(document).ready(function () {
 	    return context.split('_')[0];
 	});	
 	Handlebars.registerHelper('get_site_icon_uri', function(context, options) {
-	    return 'http://' + context.split('_')[0] + '.tiddlyspace.com/SiteIcon';
+	    return 'http://' + context + '.tiddlyspace.com/SiteIcon';
 	});		
 	$(document).on('click', '.tiddler-button', function() {
 		var uri = $(this).data('uri');
