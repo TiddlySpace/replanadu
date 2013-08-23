@@ -1,11 +1,12 @@
 
 function Twiddlers() {
 	this.title = undefined;
-	this.spaceName = tiddlyweb.status.space.name;
+	this.currentUser = tiddlyweb.status.username;
 	this._init();
 	this.titleTemplate = this._getTemplate('#tiddler-title-template');
 	this.tiddlerTemplate = this._getTemplate('#tiddler-template');
 	this.listTemplate = this._getTemplate('#related-list-template');
+	this.followers = [];
 }
 
 Twiddlers.prototype._init = function() {
@@ -18,8 +19,7 @@ Twiddlers.prototype._getTemplate = function(id) {
 };
 
 Twiddlers.prototype.getTwiddlers = function() {
-	var tag = '@' + this.spaceName;
-	this._search(this.title, tag);	
+	this._allSearch(this.title);	
 	this._getLocalTiddler(this.title);
 };
 
@@ -28,6 +28,7 @@ Twiddlers.prototype._setTitle = function() {
 };
 
 Twiddlers.prototype._displayRelated = function(tiddlers) {
+	$('#relatedlist').empty();
 	$('#relatedlist').append(this.listTemplate({ tiddlers: tiddlers }));
 };
 
@@ -57,14 +58,44 @@ Twiddlers.prototype._getTiddler = function(title, success) {
 	this._doGET('/' + encodeURIComponent(title) + '?render=1', success, this._ajaxError);
 };
 
-Twiddlers.prototype._search = function(title, tag) {
+// XXX: somewhat dupe from TwiddlersCount!
+Twiddlers.prototype._getFollowers = function() {
+	if (this.followers.length == 0) {
+		var context = this;
+		var success = function(data, status, xhr) {
+			var followers = $.trim(data).split('\n');
+			context.followers = $.map(followers, function(item) {
+				return item.replace(/^@/, '');
+			});
+			context._followSearch(context.followers);
+		};
+		var url = '/search.txt?q=bag:' + this.currentUser
+			+ '_public%20tag:follow'
+			+ '%20_limit:999';
+		this._doGET(url, success, this._ajaxError);
+	}
+	this._followSearch(this.followers);
+};
+
+
+Twiddlers.prototype._search = function(url) {
 	var context = this;
 	var success = function(data, status, xhr) {
 		context._displayRelated(data);
 	};
-	var url = '/search.json?q=title:"' + encodeURIComponent(title) + '" tag:' + tag;
 	this._doGET(url, success, this._ajaxError);
 };
+
+Twiddlers.prototype._allSearch = function(title) {
+	var url = '/search.json?q=title:"' + encodeURIComponent(title) + '"';
+	this._search(url);
+}
+
+Twiddlers.prototype._followSearch = function(followers) {
+	var url = '/search?q=title:"' + encodeURIComponent(this.title) +
+		'"%20' + 'modifier:' + followers.join('%20OR%20modifier:');
+	this._search(url);
+}
 
 Twiddlers.prototype._doGET = function(url, success, error) {
 	$.ajax({
