@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/bags/common/tiddlers/normalize.css">
         <link rel="stylesheet" href="/bags/replanadu_public/tiddlers/replanadu.css">
         <script src="/bags/replanadu_public/tiddlers/modernizr-2.6.2.min.js"></script>
+
         <script id="tiddler-template" type="text/x-handlebars-template">
             {{{ html }}}
         </script>
@@ -31,7 +32,14 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <h1 id="tiddler-title"></h1>
+        <header>
+            <script id="tiddler-title-template" type="text/x-handlebars-template">
+                <h1 id="tiddler-title" class="title">
+                    <a href="{{ url }}">{{{ title }}}</a>
+                </h1>
+            </script>
+        </header>
+
         <section>
             <article id="local"></article>
         </section>
