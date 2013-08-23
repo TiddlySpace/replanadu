@@ -19,10 +19,15 @@ TwiddlersCount.prototype._init = function() {
 TwiddlersCount.prototype._getFollowers = function() {
 	var context = this;
 	var success = function(data, status, xhr) {
-		var followers = data.split('\n');
+		var followers = $.trim(data).split('\n');
+		followers = $.map(followers, function(item) {
+			return item.replace(/^@/, '');
+		});
 		context._search(followers);
 	};
-	var url = '/search.txt?q=bag:' + this.currentUser + '_public%20tag:follow';
+	var url = '/search.txt?q=bag:' + this.currentUser
+		+ '_public%20tag:follow'
+		+ '%20_limit:999';
 	this._doGET(url, success, this._ajaxError);
 };
 
@@ -47,17 +52,17 @@ TwiddlersCount.prototype.updateButton = function(value) {
 TwiddlersCount.prototype._followSearch = function(followers) {
 	var context = this;
 	var followSuccess = function(data, status, xhr) {
-		context.updateButton(data.split('\n').length);
+		context.updateButton($.trim(data).split('\n').length);
 	};
 	var followUrl = '/search.txt?q=title:"' + encodeURIComponent(this.title) +
-		'"%20' + followers.join('%20OR%20');
+		'"%20' + 'modifier:' + followers.join('%20OR%20modifier:');
 	this._doGET(followUrl, followSuccess, this._ajaxError);
 };
 
 TwiddlersCount.prototype._search = function(followers) {
 	var context = this;
 	var allSuccess = function(data, status, xhr) {
-		context.addButton(data.split('\n').length);
+		context.addButton($.trim(data).split('\n').length);
 		context._followSearch(followers);
 	};
 	var allUrl = '/search.txt?q=title:"' + encodeURIComponent(this.title) +
