@@ -28,8 +28,9 @@ Twiddlers.prototype._setTitle = function() {
 };
 
 Twiddlers.prototype._displayRelated = function(tiddlers) {
-	$('#relatedlist').empty();
-	$('#relatedlist').append(this.listTemplate({ tiddlers: tiddlers }));
+    var list = $('#relatedlist');
+    list.empty();
+    list.append(this.listTemplate({ tiddlers: tiddlers }));
 };
 
 Twiddlers.prototype._displayTiddler = function(tiddler) {
