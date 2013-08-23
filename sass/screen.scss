@@ -16,6 +16,10 @@ body {
     font-size: 18px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .title {
     font-size: 68px;
 
@@ -74,4 +78,8 @@ header {
             background: url(/up-tsgrey.png) no-repeat transparent;
         }
     }
+}
+
+.pair-content {
+    padding: ($v_flow / 2) 4px 0; 
 }
