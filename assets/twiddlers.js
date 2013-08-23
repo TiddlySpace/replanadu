@@ -44,9 +44,9 @@ Twiddlers.prototype._getLocalTiddler = function(title) {
 	this._getTiddler(title, success);
 };
 
-Twiddlers.prototype.loadTiddler = function(uri, bag) {
+Twiddlers.prototype.loadTiddler = function(uri, elem) {
 	var success = function(data) {
-		$('#tiddler_' + bag).html(data.render);
+		$(elem).append(data.render);
 	};
     var match = 'tiddlyspace.com/';
     uri = uri.substring(uri.indexOf(match) + match.length) + '?render=1';
@@ -87,4 +87,8 @@ $(document).ready(function () {
 	Handlebars.registerHelper('get_site_icon_uri', function(context, options) {
 	    return 'http://' + context.split('_')[0] + '.tiddlyspace.com/SiteIcon';
 	});		
+	$(document).on('click', '.tiddler-button', function() {
+		var uri = $(this).data('uri');
+		app.loadTiddler(uri, $(this).parent());
+	});
 });
