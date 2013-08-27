@@ -1,6 +1,7 @@
 function Twiddlers() {
     this.title = undefined;
     this.currentUser = tiddlyweb.status.username;
+    this.serverHost = tiddlyweb.status.server_host;
     this._init();
     this.headerTemplate = this._getTemplate('#tiddler-header-template');
     this.tiddlerTemplate = this._getTemplate('#tiddler-template');
@@ -110,15 +111,17 @@ Twiddlers.prototype._doGET = function (url, success, error) {
     });
 };
 
-var app = undefined;
 $(document).ready(function () {
-    app = new Twiddlers();
-    Handlebars.registerHelper('get_space_name', function (context, options) {
+    var app = new Twiddlers();
+
+    Handlebars.registerHelper('getSpaceName', function (context) {
         return context.split('_')[0];
     });
-    Handlebars.registerHelper('get_site_icon_uri', function (context, options) {
-        return 'http://' + context + '.tiddlyspace.com/SiteIcon';
+    Handlebars.registerHelper('getSpaceURI', function (context) {
+        var spaceName = Handlebars.helpers.getSpaceName(context);
+        return app.serverHost.scheme + '://' + spaceName + '.' + app.serverHost.host;
     });
+
     $(document).on('click', '.tiddler-button', function () {
         var $button = $(this);
         var $article = $button.next();
