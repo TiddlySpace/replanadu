@@ -22,6 +22,7 @@
                     </a>
                     <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
                     <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
+                    <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
                     <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
                     <article class="pair-content tiddler"></article>
                 </li>
@@ -55,6 +56,7 @@
         </section>
         </div>
         <script src="/bags/common/tiddlers/jquery.js"></script>
+        <script src="/bags/common/tiddlers/jquery.timeago.js"></script>
         <script src="/status.js"></script>
         <script src="/bags/replanadu_public/tiddlers/handlebars-1.0.0.js"></script>
         <script src="/bags/replanadu_public/tiddlers/twiddlers.js"></script>

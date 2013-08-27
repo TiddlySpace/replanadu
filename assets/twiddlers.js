@@ -34,6 +34,7 @@ Twiddlers.prototype._displayRelated = function (tiddlers) {
     var list = $('#relatedlist');
     list.empty();
     list.append(this.listTemplate({ tiddlers: this._filterOutOriginalTiddler(tiddlers, this.bag) }));
+    list.find('.timeago').timeago();
 };
 
 Twiddlers.prototype._filterOutOriginalTiddler = function (tiddlers, originalBag) {
@@ -136,6 +137,16 @@ $(document).ready(function () {
     Handlebars.registerHelper('getSpaceURI', function (context) {
         var spaceName = Handlebars.helpers.getSpaceName(context);
         return app.serverHost.scheme + '://' + spaceName + '.' + app.serverHost.host;
+    });
+    Handlebars.registerHelper('dateString', function (context) {
+        return new Date(Date.UTC(
+            parseInt(context.substr(0, 4), 10),
+            parseInt(context.substr(4, 2), 10) - 1,
+            parseInt(context.substr(6, 2), 10),
+            parseInt(context.substr(8, 2), 10),
+            parseInt(context.substr(10, 2), 10),
+            parseInt(context.substr(12, 2) || "0", 10),
+            parseInt(context.substr(14, 3) || "0", 10))).toISOString();
     });
 
     $(document).on('click', '.tiddler-button', function () {
