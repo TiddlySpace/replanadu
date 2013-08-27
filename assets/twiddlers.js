@@ -1,5 +1,6 @@
 function Twiddlers() {
     this.title = undefined;
+    this.bag = undefined;
     this.currentUser = tiddlyweb.status.username;
     this.serverHost = tiddlyweb.status.server_host;
     this._init();
@@ -19,8 +20,10 @@ Twiddlers.prototype._getTemplate = function (id) {
 };
 
 Twiddlers.prototype.getTwiddlers = function () {
-    this._allSearch(this.title);
-    this._getLocalTiddler(this.title);
+    var context = this;
+    this._getLocalTiddler(this.title).done(function () {
+        context._allSearch(context.title);
+    });
 };
 
 Twiddlers.prototype._setTitle = function () {
@@ -30,7 +33,14 @@ Twiddlers.prototype._setTitle = function () {
 Twiddlers.prototype._displayRelated = function (tiddlers) {
     var list = $('#relatedlist');
     list.empty();
-    list.append(this.listTemplate({ tiddlers: tiddlers }));
+    list.append(this.listTemplate({ tiddlers: this._filterOutOriginalTiddler(tiddlers, this.bag) }));
+};
+
+Twiddlers.prototype._filterOutOriginalTiddler = function (tiddlers, originalBag) {
+    //TODO: provide implementation for IE < 9?
+    return tiddlers.filter(function (tiddler) {
+        return tiddler.bag !== originalBag;
+    });
 };
 
 Twiddlers.prototype._displayTiddler = function (tiddler) {
@@ -39,11 +49,17 @@ Twiddlers.prototype._displayTiddler = function (tiddler) {
 };
 
 Twiddlers.prototype._getLocalTiddler = function (title) {
+    var deferred = new $.Deferred();
+
     var context = this;
     var success = function (data) {
         context._displayTiddler(data);
+        context.bag = data.bag;
+        deferred.resolve();
     };
     this._getTiddler(title, success);
+
+    return deferred.promise();
 };
 
 Twiddlers.prototype.loadTiddler = function (uri, elem) {
