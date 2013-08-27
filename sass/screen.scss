@@ -72,10 +72,10 @@ header {
             &:hover {
                 cursor: pointer;
             }
-        }
 
-        &.open {
-            background: url(/up-tsgrey.png) no-repeat transparent;
+            &.open {
+              background: url(/up-tsgrey.png) no-repeat transparent;
+            }
         }
     }
 }

@@ -121,7 +121,19 @@ $(document).ready(function () {
 	    return 'http://' + context + '.tiddlyspace.com/SiteIcon';
 	});		
 	$(document).on('click', '.tiddler-button', function() {
-		var uri = $(this).data('uri');
-		app.loadTiddler(uri, $(this).parent().children('article'));
+        var $button = $(this);
+        var $article = $button.next();
+		var uri = $button.data('uri');
+        if($button.hasClass('open')) {
+            $button.removeClass('open');
+            $article.hide();
+        } else {
+            $button.addClass('open');
+            if($article.children().length === 0) {
+		        app.loadTiddler(uri, $button.parent().children('article'));
+            } else {
+                $article.show();
+            }
+        }
 	});
 });
