@@ -17,7 +17,9 @@
             <ul>
                 {{#each tiddlers}}
                 <li>
-                    <img src="{{ getSpaceURI this.modifier }}/SiteIcon" />
+                    <a href="{{ getSpaceURI this.modifier }}">
+                        <img src="{{ getSpaceURI this.modifier }}/SiteIcon" />
+                    </a>
                     <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
                     <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
                     <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
