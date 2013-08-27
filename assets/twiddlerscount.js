@@ -55,7 +55,7 @@
             + encodeURIComponent(this.title));
         button.addClass('twiddlers');
         button.addClass('twiddlerall');
-        // using CSS becuase we are a remote include widget
+        // using CSS because we are a remote include widget
         button.css({
             position: 'absolute',
             border: 0,
@@ -64,7 +64,14 @@
             right: '80px',
             opacity: 0.5
         });
-        // XXX: set opacity on hover
+        button.hover(
+            function () {
+                $(this).css('opacity', '1');
+            },
+            function () {
+                $(this).css('opacity', '0.5');
+            }
+        );
 
         button.append(img);
         $('#container').append(button);
