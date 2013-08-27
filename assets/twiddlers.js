@@ -2,7 +2,7 @@ function Twiddlers() {
     this.title = undefined;
     this.currentUser = tiddlyweb.status.username;
     this._init();
-    this.titleTemplate = this._getTemplate('#tiddler-title-template');
+    this.headerTemplate = this._getTemplate('#tiddler-header-template');
     this.tiddlerTemplate = this._getTemplate('#tiddler-template');
     this.listTemplate = this._getTemplate('#related-list-template');
     this.followers = [];
@@ -33,8 +33,8 @@ Twiddlers.prototype._displayRelated = function (tiddlers) {
 };
 
 Twiddlers.prototype._displayTiddler = function (tiddler) {
-    $('header').html(this.titleTemplate(tiddler));
-    $('#local').html(this.tiddlerTemplate({ title: tiddler.title, html: tiddler.render }))
+    $('header').html(this.headerTemplate({title: tiddler.title, uri: tiddler.uri }));
+    $('#local').html(this.tiddlerTemplate({ html: tiddler.render }))
 };
 
 Twiddlers.prototype._getLocalTiddler = function (title) {
