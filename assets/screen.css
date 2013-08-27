@@ -211,7 +211,6 @@ header {
 }
 /* line 62, ../sass/screen.scss */
 .pairs li button {
-  background: url(/down-tsgrey.png) no-repeat transparent;
   border: 0;
   outline: none;
   width: 52px;
@@ -220,16 +219,30 @@ header {
   right: 0;
   top: 42px;
 }
-/* line 72, ../sass/screen.scss */
+/* line 71, ../sass/screen.scss */
 .pairs li button:hover {
   cursor: pointer;
 }
 /* line 76, ../sass/screen.scss */
-.pairs li button.open {
+.pairs li .tiddler-button {
+  background: url(/down-tsgrey.png) no-repeat transparent;
+}
+/* line 79, ../sass/screen.scss */
+.pairs li .tiddler-button.open {
   background: url(/up-tsgrey.png) no-repeat transparent;
 }
+/* line 84, ../sass/screen.scss */
+.pairs li .close-button {
+  background: url(/close.png) no-repeat transparent;
+  right: 52px;
+  opacity: 0.5;
+}
+/* line 89, ../sass/screen.scss */
+.pairs li .close-button:hover {
+  opacity: 1;
+}
 
-/* line 83, ../sass/screen.scss */
+/* line 96, ../sass/screen.scss */
 .pair-content {
   padding: 13px 4px 0;
 }

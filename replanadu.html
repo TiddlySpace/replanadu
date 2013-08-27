@@ -24,6 +24,7 @@
                     <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
                     <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
                     <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
+                    <button class="close-button" title="Dismiss tiddler"></button>
                     <article class="pair-content tiddler"></article>
                 </li>
                 {{/each}}

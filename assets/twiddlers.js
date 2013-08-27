@@ -151,7 +151,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.tiddler-button', function () {
         var $button = $(this);
-        var $article = $button.next();
+        var $article = $button.parent().find('.pair-content');
         var uri = $button.data('uri');
         if ($button.hasClass('open')) {
             $button.removeClass('open');
@@ -164,5 +164,10 @@ $(document).ready(function () {
                 $article.show();
             }
         }
+    });
+
+    $(document).on('click', '.close-button', function () {
+        var $listItem = $(this).parent();
+        $listItem.remove();
     });
 });

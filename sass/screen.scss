@@ -60,7 +60,6 @@ header {
         }
 
         button {
-            background: url(/down-tsgrey.png) no-repeat transparent;
             border: 0;
             outline: none;
             width: 2 * $v_flow;
@@ -72,10 +71,24 @@ header {
             &:hover {
                 cursor: pointer;
             }
+        }
+
+        .tiddler-button {
+            background: url(/down-tsgrey.png) no-repeat transparent;
 
             &.open {
-              background: url(/up-tsgrey.png) no-repeat transparent;
+                background: url(/up-tsgrey.png) no-repeat transparent;
             }
+        }
+
+        .close-button {
+            background: url(/close.png) no-repeat transparent;
+            right: 52px;
+            opacity: 0.5;
+
+          &:hover {
+              opacity: 1;
+          }
         }
     }
 }
