@@ -130,7 +130,47 @@ describe("TwiddlersCount", function () {
 
     });
 
-    xdescribe("Button", function () {
+    describe("Button", function () {
 
+        beforeEach(function () {
+            loadFixtures("HTMLTiddler.html");
+            twiddlersCount.init();
+        });
+
+        it("should be added as the first child of the body", function () {
+            twiddlersCount.addButton();
+
+            expect($("body").children().first()).toBe("a#twiddlers");
+        });
+
+        it("should contain the correct icon", function () {
+            twiddlersCount.addButton();
+
+            expect($("#twiddlers img")).toHaveAttr("src", "/bags/replanadu_public/tiddlers/replanadu-white.png");
+        });
+
+        it("should link to the replanadu application with the correct title", function () {
+            twiddlersCount.addButton();
+
+            expect($("#twiddlers")).toHaveAttr("href", "/replanadu.html#GettingStarted");
+        });
+
+        it("should store the total number of related tiddlers found as a data attribute", function () {
+            twiddlersCount.addButton(16);
+
+            expect($("#twiddlers")).toHaveAttr("data-twiddlerall", 16);
+        });
+
+        it("should contain the followers icon when updated to link to related tiddlers from followers", function () {
+            twiddlersCount.updateButton();
+
+            expect($("#twiddlers img")).toHaveAttr("src", "/bags/replanadu_public/tiddlers/replanadu-gold.png");
+        });
+
+        it("should store the total number of related tiddlers from followers found as a data attribute", function () {
+            twiddlersCount.updateButton(6);
+
+            expect($("#twiddlers")).toHaveAttr("data-tiddlerfollow", 6);
+        });
     });
 });
