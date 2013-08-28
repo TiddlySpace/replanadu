@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TiddlySpace/replanadu.png)](https://travis-ci.org/TiddlySpace/replanadu)
+
 replanadu
 =========
 
