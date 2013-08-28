@@ -50,6 +50,7 @@
         });
         button.attr('id', 'twiddlers');
         button.attr('target', '_blank');
+        button.attr('title', 'Related tiddlers');
         button.attr('data-twiddlerall', value);
         button.attr('href', '/' + this.targetURI + '#'
             + encodeURIComponent(this.title));
