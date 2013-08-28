@@ -14,6 +14,8 @@ A hack to navigate tiddlyspace replies
 3. Run `make lib` to fetch dependencies.
 4. Run `tsapp serve` and navigate to `http://localhost:8080/GettingStarted.html`
 
+You should also install [Node.js](http://nodejs.org/) if you want to run tests and JS linting.
+
 All code apart from the [Sass](http://sass-lang.com/) files lives in `assets`.
 
 ## Space Inclusion
