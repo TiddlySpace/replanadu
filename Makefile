@@ -1,4 +1,4 @@
-.PHONY: clean lib compass
+.PHONY: clean lib compass jshint lint
 
 download = curl --location -f --output $(1) --time-cond $(1) --remote-time $(2)
 
@@ -14,5 +14,12 @@ lib:
 compass:
 	compass compile
 
-deploy: lib compass
+deploy: lib compass lint
 	tsapp push_hard replanadu_public
+
+jshint:
+	# may need sudo
+	which jshint ; if [ $$? -ne 0 ] ; then npm install -g jshint ; fi
+
+lint: jshint
+	jshint assets/twiddlers*.js

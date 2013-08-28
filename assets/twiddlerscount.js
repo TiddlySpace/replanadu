@@ -8,9 +8,8 @@
         this.baseUrl = '';
         this.title = undefined;
         this.currentUser = tiddlyweb.status.username;
-        this.targetURI = window.location.href.match(
-            tiddlyweb.status.server_host.host)
-            ? 'replanadu' : 'replanadu.html';
+        this.targetURI = window.location.href.match(tiddlyweb.status.server_host.host) ?
+            'replanadu' : 'replanadu.html';
         this._init();
     }
 
@@ -32,9 +31,9 @@
                 });
                 context._search(followers);
             };
-            var url = '/search.txt?q=bag:' + this.currentUser
-                + '_public%20tag:follow'
-                + '%20_limit:999';
+            var url = '/search.txt?q=bag:' + this.currentUser +
+                '_public%20tag:follow' +
+                '%20_limit:999';
             this._doGET(url, success, this._ajaxError);
         } else {
             this._search([]);
@@ -52,8 +51,8 @@
         button.attr('target', '_blank');
         button.attr('title', 'Related tiddlers');
         button.attr('data-twiddlerall', value);
-        button.attr('href', '/' + this.targetURI + '#'
-            + encodeURIComponent(this.title));
+        button.attr('href', '/' + this.targetURI + '#' +
+            encodeURIComponent(this.title));
         button.addClass('twiddlers');
         button.addClass('twiddlerall');
         // using CSS because we are a remote include widget
