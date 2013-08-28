@@ -1,18 +1,18 @@
-function Twiddlers() {
+function Twiddlers(tiddlyweb) {
     this.title = undefined;
     this.bag = undefined;
     this.currentUser = tiddlyweb.status.username;
     this.serverHost = tiddlyweb.status.server_host;
-    this._init();
     this.headerTemplate = this._getTemplate('#tiddler-header-template');
     this.tiddlerTemplate = this._getTemplate('#tiddler-template');
     this.listTemplate = this._getTemplate('#related-list-template');
     this.followers = [];
 }
 
-Twiddlers.prototype._init = function () {
+Twiddlers.prototype.init = function () {
     this._setTitle();
-    this.getTwiddlers();
+    this._bindUIEvents();
+    this._registerHandlebarsHelpers();
 };
 
 Twiddlers.prototype._getTemplate = function (id) {
@@ -128,27 +128,7 @@ Twiddlers.prototype._doGET = function (url, success, error) {
     });
 };
 
-$(document).ready(function () {
-    var app = new Twiddlers();
-
-    Handlebars.registerHelper('getSpaceName', function (context) {
-        return context.split('_')[0];
-    });
-    Handlebars.registerHelper('getSpaceURI', function (context) {
-        var spaceName = Handlebars.helpers.getSpaceName(context);
-        return app.serverHost.scheme + '://' + spaceName + '.' + app.serverHost.host;
-    });
-    Handlebars.registerHelper('dateString', function (context) {
-        return new Date(Date.UTC(
-            parseInt(context.substr(0, 4), 10),
-            parseInt(context.substr(4, 2), 10) - 1,
-            parseInt(context.substr(6, 2), 10),
-            parseInt(context.substr(8, 2), 10),
-            parseInt(context.substr(10, 2), 10),
-            parseInt(context.substr(12, 2) || "0", 10),
-            parseInt(context.substr(14, 3) || "0", 10))).toISOString();
-    });
-
+Twiddlers.prototype._bindUIEvents = function () {
     $(document).on('click', '.tiddler-button', function () {
         var $button = $(this);
         var $article = $button.parent().find('.pair-content');
@@ -172,4 +152,28 @@ $(document).ready(function () {
             $listItem.remove();
         });
     });
-});
+};
+
+Twiddlers.prototype._registerHandlebarsHelpers = function () {
+    var _this = this;
+
+    Handlebars.registerHelper('getSpaceName', function (context) {
+        return context.split('_')[0];
+    });
+
+    Handlebars.registerHelper('getSpaceURI', function (context) {
+        var spaceName = Handlebars.helpers.getSpaceName(context);
+        return _this.serverHost.scheme + '://' + spaceName + '.' + app.serverHost.host;
+    });
+
+    Handlebars.registerHelper('dateString', function (context) {
+        return new Date(Date.UTC(
+            parseInt(context.substr(0, 4), 10),
+            parseInt(context.substr(4, 2), 10) - 1,
+            parseInt(context.substr(6, 2), 10),
+            parseInt(context.substr(8, 2), 10),
+            parseInt(context.substr(10, 2), 10),
+            parseInt(context.substr(12, 2) || "0", 10),
+            parseInt(context.substr(14, 3) || "0", 10))).toISOString();
+    });
+};
