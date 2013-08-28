@@ -38,4 +38,4 @@ Then run:
 
     compass compile
 
-This will produce/overwrite `screen.css` in the `assets` folder.  At present, both Sass and CSS files need to be committed.
+This will produce/overwrite `replanadu.css` in the `assets` folder.  At present, both Sass and CSS files need to be committed.
