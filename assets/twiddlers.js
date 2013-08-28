@@ -168,6 +168,8 @@ $(document).ready(function () {
 
     $(document).on('click', '.close-button', function () {
         var $listItem = $(this).parent();
-        $listItem.remove();
+        $listItem.animate({ left: "+=110%" }, 600, "linear", function() {
+            $listItem.remove();
+        });
     });
 });
