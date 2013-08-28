@@ -41,7 +41,13 @@ Then run:
 
 This will produce/overwrite `replanadu.css` in the `assets` folder.  At present, both Sass and CSS files need to be committed.
 
-# Deployment
+## Testing
+
+    make testlib
+
+Start a local web server and load `test/SpecRunner.html` in a browser.
+
+## Deployment
 
     make deploy
 
