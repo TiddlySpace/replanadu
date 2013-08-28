@@ -24,9 +24,6 @@ Include `replanadu` in your space.
 
 Create/edit the HtmlJavascript tiddler and add the following:
 
-    /bags/common/tiddlers/jquery.js
-    /bags/common/tiddlers/_reply-loader.js
-    /bags/common/tiddlers/backstage.js
     /status.js
     /bags/replanadu_public/tiddlers/twiddlerscount.js
 
