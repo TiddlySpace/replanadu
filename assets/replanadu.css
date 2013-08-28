@@ -81,12 +81,6 @@ nav {
 .reply-btn,
 body #app-picker {
   top: 6px;
-  right: 260px;
-}
-
-/* line 15, ../sass/_tsbar.scss */
-body #app-picker {
-  right: 220px;
 }
 
 /* line 1, ../sass/_tiddler.scss */
