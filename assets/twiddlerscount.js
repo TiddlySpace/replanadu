@@ -75,7 +75,7 @@
         );
 
         button.append(img);
-        $('#container').append(button);
+        $('body').prepend(button);
     };
 
     TwiddlersCount.prototype.updateButton = function (value) {
