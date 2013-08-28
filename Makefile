@@ -23,11 +23,13 @@ testlib:
 		"https://raw.github.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js")
 	$(call download, "test/lib/sinon-1.7.3.js", \
 		"http://sinonjs.org/releases/sinon-1.7.3.js")
+	$(call download, "test/lib/run-jasmine.js", \
+		"https://raw.github.com/ariya/phantomjs/master/examples/run-jasmine.js")
 
 compass:
 	compass compile
 
-deploy: lib compass lint
+deploy: lib compass lint test
 	tsapp push_hard replanadu_public
 
 jshint:
@@ -36,3 +38,10 @@ jshint:
 
 lint: jshint
 	jshint assets/twiddlers*.js
+
+phantomjs:
+	# may need sudo
+	which phantomjs ; if [ $$? -ne 0 ] ; then npm install -g phantomjs ; fi
+
+test: testlib phantomjs
+	phantomjs test/lib/run-jasmine.js test/SpecRunner.html

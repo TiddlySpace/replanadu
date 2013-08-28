@@ -43,9 +43,19 @@ This will produce/overwrite `replanadu.css` in the `assets` folder.  At present,
 
 ## Testing
 
+### Command line
+
+    make test
+
+This downloads the test dependencies (if not already there) and runs the tests via [PhantomJS](http://phantomjs.org/)
+
+### In Browser
+
+If the test dependencies haven't yet been downloaded:
+
     make testlib
 
-Start a local web server and load `test/SpecRunner.html` in a browser.
+Run a local web server and load `test/SpecRunner.html` into a browser.
 
 ## Deployment
 
