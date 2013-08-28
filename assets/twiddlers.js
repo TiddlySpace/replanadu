@@ -45,7 +45,7 @@ Twiddlers.prototype._filterOutOriginalTiddler = function (tiddlers, originalBag)
 };
 
 Twiddlers.prototype._displayTiddler = function (tiddler) {
-    $('header').html(this.headerTemplate({title: tiddler.title, uri: tiddler.uri }));
+    $('header').html(this.headerTemplate({title: tiddler.title, user: this.currentUser }));
     $('#local').html(this.tiddlerTemplate({ html: tiddler.render }));
 };
 
