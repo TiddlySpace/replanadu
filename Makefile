@@ -27,6 +27,11 @@ testlib:
 		"http://sinonjs.org/releases/sinon-1.7.3.js")
 	$(call download, "test/lib/run-jasmine.js", \
 		"https://raw.github.com/ariya/phantomjs/master/examples/run-jasmine.js")
+	$(call download, "test/lib/blanket.min.js", \
+		"https://raw.github.com/alex-seville/blanket/master/dist/qunit/blanket.min.js")
+	$(call download, "test/lib/jasmine-blanket.js", \
+		"https://raw.github.com/alex-seville/blanket/master/src/adapters/jasmine-blanket.js")
+
 
 compass:
 	compass compile

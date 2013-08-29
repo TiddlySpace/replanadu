@@ -7,6 +7,8 @@
         <link rel="stylesheet" type="text/css" href="../test/lib/jasmine.css">
         <script type="text/javascript" src="../test/lib/jasmine.js"></script>
         <script type="text/javascript" src="../test/lib/jasmine-html.js"></script>
+        <script type="text/javascript" src="../test/lib/blanket.min.js"></script>
+        <script type="text/javascript" src="../test/lib/jasmine-blanket.js"></script>
 
         <!-- include test helper files here... -->
         <script type="text/javascript" src="../test/lib/jasmine-jquery.js"></script>
@@ -24,8 +26,8 @@
         </script>
 
         <!-- include src files here... -->
-        <script type="text/javascript" src="../assets/twiddlers.js"></script>
-        <script type="text/javascript" src="../assets/twiddlerscount.js"></script>
+        <script data-cover type="text/javascript" src="../assets/twiddlers.js"></script>
+        <script data-cover type="text/javascript" src="../assets/twiddlerscount.js"></script>
 
         <!-- include spec files here... -->
         <script type="text/javascript" src="../test/TwiddlersSpec.js"></script>
