@@ -142,10 +142,8 @@ describe("TwiddlersCount", function () {
                 headers: { 'X-ControlView': 'false' }
             })).toBeTruthy();
 
-            expect(stubAjax.neverCalledWithMatch({
-                url: '/search.txt?q=title:"HelloWorld"%20modifier:cdent%20OR%20modifier:colmjude',
-                headers: { 'X-ControlView': 'false' }
-            })).toBeTruthy();
+            // Proves that only a single request was made calling _search
+            expect(stubAjax.getCall(1)).toBeNull();
         });
 
     });
