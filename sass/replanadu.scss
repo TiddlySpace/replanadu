@@ -62,8 +62,6 @@ header {
         button {
             border: 0;
             outline: none;
-            width: 2 * $v_flow;
-            height: 2 * $v_flow;
             position: absolute;
             right: 0;
             top: 42px;
@@ -74,6 +72,8 @@ header {
         }
 
         .tiddler-button {
+            width: 2 * $v_flow;
+            height: 2 * $v_flow;
             background: url(/down-tsgrey.png) no-repeat transparent;
 
             &.open {
@@ -82,13 +82,12 @@ header {
         }
 
         .close-button {
-            background: url(/close.png) no-repeat transparent;
-            right: 52px;
-            opacity: 0.5;
-
-          &:hover {
-              opacity: 1;
-          }
+            width: $v_flow;
+            height: $v_flow;
+            background: transparent;
+            color: #909b9f;
+            right: 0px;
+            top: 0px;
         }
     }
 }
