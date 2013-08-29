@@ -97,35 +97,27 @@ Twiddlers.prototype._getFollowers = function () {
 };
 
 
-Twiddlers.prototype._search = function (url, success) {
+Twiddlers.prototype._search = function (url) {
+    var context = this;
+    var deferred = new $.Deferred()
+
+    var success = function (data, status, xhr) {
+        deferred.resolveWith(context, [data]);
+    };
     this._doGET(url, success, this._ajaxError);
+
+    return deferred.promise();
 };
 
 Twiddlers.prototype._allSearch = function (title) {
-    var context = this;
-    var deferred = new $.Deferred();
     var url = '/search.json?q=title:"' + encodeURIComponent(title) + '"';
-
-    var success = function (data, status, xhr) {
-        deferred.resolveWith(context, [data]);
-    };
-    this._search(url, success);
-
-    return deferred.promise();
+    return this._search(url);
 };
 
 Twiddlers.prototype._followSearch = function (followers) {
-    var context = this;
-    var deferred = new $.Deferred();
     var url = '/search?q=title:"' + encodeURIComponent(this.title) +
         '"%20' + 'modifier:' + followers.join('%20OR%20modifier:');
-
-    var success = function (data, status, xhr) {
-        deferred.resolveWith(context, [data]);
-    };
-    this._search(url, success);
-
-    return deferred.promise();
+    return this._search(url);
 };
 
 Twiddlers.prototype._doGET = function (url, success, error) {
