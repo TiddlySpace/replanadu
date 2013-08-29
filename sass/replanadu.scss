@@ -52,6 +52,22 @@ header {
         padding: $v_flow / 2;
         position: relative;
 
+        .meta {
+            position: absolute;
+            top: $v_flow;
+            padding-left: 104px;
+            color: #909b9f;
+
+            a {
+                color: $black;
+            }
+
+            abbr {
+                display: block;
+                line-height: $v_flow;
+            }
+        }
+
         img {
             width: $v_flow * 3;
             height: $v_flow * 3;
@@ -92,6 +108,6 @@ header {
     }
 }
 
-.pair-content {
+.open ~ .pair-content {
     padding: ($v_flow / 2) 4px 0; 
 }
