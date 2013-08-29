@@ -1,5 +1,7 @@
 .PHONY: clean lib compass jshint lint testlib
 
+ASSETS := $(wildcard assets/*)
+
 download = curl --location -f --output $(1) --time-cond $(1) --remote-time $(2)
 
 clean:
@@ -30,7 +32,8 @@ compass:
 	compass compile
 
 deploy: lib compass lint test
-	tsapp push_hard replanadu_public
+	@for asset in $(ASSETS); do tsapp push_hard replanadu_public `echo $$asset | cut -d '/' -f 2` ; done
+	tsapp push_hard replanadu_public replanadu.html
 
 jshint:
 	# may need sudo
