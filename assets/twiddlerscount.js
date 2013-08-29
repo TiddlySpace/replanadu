@@ -92,9 +92,12 @@ TwiddlersCount.prototype._followSearch = function (followers) {
 TwiddlersCount.prototype._search = function (followers) {
     var context = this;
     var allSuccess = function (data, status, xhr) {
-        context.addButton($.trim(data).split('\n').length);
-        if (followers.length > 0) {
-            context._followSearch(followers);
+        var twiddlersLength = $.trim(data).split('\n').length;
+        if (twiddlersLength > 1) {
+            context.addButton(twiddlersLength);
+            if (followers.length > 0) {
+                context._followSearch(followers);
+            }
         }
     };
     var allUrl = '/search.txt?q=title:"' + encodeURIComponent(this.title) +

@@ -109,8 +109,9 @@ describe("TwiddlersCount", function () {
             });
         });
 
-        it("should search for tiddlers by title an followers when provided", function () {
-            stubAjax.yieldsTo("success");
+        it("should search for tiddlers by both title and followers when more than one result", function () {
+            // we must pass data or else the second request will not run
+            stubAjax.yieldsTo("success", "HelloWorld\nHelloWorld");
 
             twiddlersCount._search(["cdent", "colmjude"]);
 
@@ -123,6 +124,22 @@ describe("TwiddlersCount", function () {
             })).toBeTruthy();
 
             expect(modifierRequest.calledWithMatch({
+                url: '/search.txt?q=title:"HelloWorld"%20modifier:cdent%20OR%20modifier:colmjude',
+                headers: { 'X-ControlView': 'false' }
+            })).toBeTruthy();
+        });
+
+        it("should not search for tiddlers by follower when only one result", function () {
+            stubAjax.yieldsTo("success", "HelloWorld");
+
+            twiddlersCount._search(["cdent", "colmjude"]);
+
+            expect(stubAjax.calledWithMatch({
+                url: '/search.txt?q=title:"HelloWorld"',
+                headers: { 'X-ControlView': 'false' }
+            })).toBeTruthy();
+
+            expect(stubAjax.neverCalledWithMatch({
                 url: '/search.txt?q=title:"HelloWorld"%20modifier:cdent%20OR%20modifier:colmjude',
                 headers: { 'X-ControlView': 'false' }
             })).toBeTruthy();
