@@ -17,6 +17,12 @@
         <script src="http://tiddlyspace.com/status.js"></script>
         <script type="text/javascript" src="../assets/handlebars-1.0.0.js"></script>
 
+        <!-- Prevent any code that is called within $(document).ready()
+             from being executed.  This Keeps away unwanted side-effects -->
+        <script>
+            sinon.stub($.fn, "ready");
+        </script>
+
         <!-- include src files here... -->
         <script type="text/javascript" src="../assets/twiddlers.js"></script>
         <script type="text/javascript" src="../assets/twiddlerscount.js"></script>
