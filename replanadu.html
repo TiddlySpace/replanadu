@@ -12,26 +12,6 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href="/replanadu.css">
         <script src="/bags/replanadu_public/tiddlers/modernizr-2.6.2.js"></script>
-
-        <script id="related-list-template" type="text/x-handlebars-template">
-            <ul>
-                {{#each tiddlers}}
-                <li>
-                    <a href="{{ getSpaceURI this.modifier }}">
-                        <img src="{{ getSpaceURI this.modifier }}/SiteIcon" />
-                    </a>
-                    <div class="meta">
-                        <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
-                        <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
-                        <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
-                    </div>
-                    <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
-                    <button class="close-button" title="Dismiss tiddler">x</button>
-                    <article class="pair-content tiddler"></article>
-                </li>
-                {{/each}}
-            </ul>
-        </script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -45,7 +25,6 @@
                 </h1>
             </script>
         </header>
-
         <div class="wrapper">
         <section>
             <article id="local" class="tiddler original">
@@ -55,7 +34,27 @@
             </article>
         </section>
         <section>
-            <section id="relatedlist" class="pairs"></section>
+            <section id="relatedlist" class="pairs">
+                <script id="related-list-template" type="text/x-handlebars-template">
+                    <ul>
+                        {{#each tiddlers}}
+                        <li>
+                            <a href="{{ getSpaceURI this.modifier }}">
+                                <img src="{{ getSpaceURI this.modifier }}/SiteIcon" />
+                            </a>
+                            <div class="meta">
+                                <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
+                                <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
+                                <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
+                            </div>
+                            <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
+                            <button class="close-button" title="Dismiss tiddler">x</button>
+                            <article class="pair-content tiddler"></article>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </script>
+            </section>
         </section>
         </div>
         <script src="/bags/common/tiddlers/jquery.js"></script>
