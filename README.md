@@ -12,11 +12,17 @@ A hack to navigate tiddlyspace replies
 1. Check out this repository.
 2. Install [tsapp](http://tsapp.tiddlyspace.com/) via [pip](http://www.pip-installer.org/en/latest/): `pip install -U tsapp`.
 3. Run `make lib` to fetch dependencies.
-4. Run `tsapp serve` and navigate to `http://localhost:8080/GettingStarted.html`
+4. Run `tsapp serve` and navigate to `http://localhost:8080/About.html`
 
 You should also install [Node.js](http://nodejs.org/) if you want to run tests and JS linting.
 
 All code apart from the [Sass](http://sass-lang.com/) files lives in `assets`.
+
+## Testing Against Another Space
+
+You can edit `.tsapp` and chance the `target_server` property to point to a space of your choice.
+This means you will be able to navigate to your tiddlers via `http://localhost:8080/<TiddlerName>`
+and see how replanadu affects those tiddlers.
 
 ## Space Inclusion
 
