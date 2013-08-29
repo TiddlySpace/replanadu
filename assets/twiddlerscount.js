@@ -119,7 +119,15 @@ TwiddlersCount.prototype._ajaxError = function (xhr, err, exc) {
 };
 
 $(document).ready(function () {
-    var tiddlersCount = new TwiddlersCount(tiddlyweb);
-    tiddlersCount.init();
-    tiddlersCount.search();
+    if(!window.tiddlyweb || !window.tiddlyweb.status) {
+        $.getScript('/status.js', runTiddlersCount);
+    } else {
+        runTiddlersCount();
+    }
+
+    function runTiddlersCount() {
+        var tiddlersCount = new TwiddlersCount(tiddlyweb);
+        tiddlersCount.init();
+        tiddlersCount.search();
+    }
 });

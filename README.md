@@ -24,7 +24,6 @@ Include `replanadu` in your space.
 
 Create/edit the HtmlJavascript tiddler and add the following:
 
-    /status.js
     /bags/replanadu_public/tiddlers/twiddlerscount.js
 
 Navigating to any tiddler e.g. `/GettingStarted` should load the replanadu icon.
