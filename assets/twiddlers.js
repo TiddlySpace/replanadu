@@ -21,8 +21,9 @@ Twiddlers.prototype._getTemplate = function (id) {
 
 Twiddlers.prototype.getTwiddlers = function () {
     var context = this;
-    this._getLocalTiddler(this.title).done(function () {
-        context._allSearch(context.title);
+    this._getLocalTiddler(this.title).done(function (data) {
+        context._displayTiddler(data);
+        context._allSearch(context.title).done(context._displayRelated);
     });
 };
 
@@ -54,9 +55,8 @@ Twiddlers.prototype._getLocalTiddler = function (title) {
 
     var context = this;
     var success = function (data) {
-        context._displayTiddler(data);
         context.bag = data.bag;
-        deferred.resolve();
+        deferred.resolve(data);
     };
     this._getTiddler(title, success);
 
@@ -86,34 +86,46 @@ Twiddlers.prototype._getFollowers = function () {
             context.followers = $.map(followers, function (item) {
                 return item.replace(/^@/, '');
             });
-            context._followSearch(context.followers);
+            context._followSearch(context.followers).done(this._displayRelated);
         };
         var url = '/search.txt?q=bag:' + this.currentUser +
             '_public%20tag:follow' +
             '%20_limit:999';
         this._doGET(url, success, this._ajaxError);
     }
-    this._followSearch(this.followers);
+    this._followSearch(this.followers).done(this._displayRelated);
 };
 
 
-Twiddlers.prototype._search = function (url) {
-    var context = this;
-    var success = function (data, status, xhr) {
-        context._displayRelated(data);
-    };
+Twiddlers.prototype._search = function (url, success) {
     this._doGET(url, success, this._ajaxError);
 };
 
 Twiddlers.prototype._allSearch = function (title) {
+    var context = this;
+    var deferred = new $.Deferred();
     var url = '/search.json?q=title:"' + encodeURIComponent(title) + '"';
-    this._search(url);
+
+    var success = function (data, status, xhr) {
+        deferred.resolveWith(context, [data]);
+    };
+    this._search(url, success);
+
+    return deferred.promise();
 };
 
 Twiddlers.prototype._followSearch = function (followers) {
+    var context = this;
+    var deferred = new $.Deferred();
     var url = '/search?q=title:"' + encodeURIComponent(this.title) +
         '"%20' + 'modifier:' + followers.join('%20OR%20modifier:');
-    this._search(url);
+
+    var success = function (data, status, xhr) {
+        deferred.resolveWith(context, [data]);
+    };
+    this._search(url, success);
+
+    return deferred.promise();
 };
 
 Twiddlers.prototype._doGET = function (url, success, error) {

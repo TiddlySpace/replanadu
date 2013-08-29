@@ -78,10 +78,103 @@ describe("Twiddlers", function () {
         });
     });
 
-    describe("Get Twinned Tiddlers", function () {
+    describe("Get Local Tiddler", function () {
 
-        it("should get the local tiddler", function () {
+        var stubbedAjax;
 
+        beforeEach(function () {
+            stubbedAjax = sinon.stub($, "ajax");
+        });
+
+        afterEach(function () {
+            stubbedAjax.restore();
+        });
+
+        it("should get the tiddler using the correct URI", function () {
+            twiddlers._getLocalTiddler("About");
+
+            sinon.assert.calledWithMatch(stubbedAjax, {
+                url: '/About?render=1',
+                headers: { 'X-ControlView': 'false' }
+            });
+        });
+
+        it("should resolve on success", function () {
+            stubbedAjax.yieldsTo("success", {
+                // This would be a complete tiddler JSON object
+                bag: "puss"
+            });
+            var spy = sinon.spy();
+
+            var promise = twiddlers._getLocalTiddler("About");
+
+            // When the local tiddler response is successful, the promise should call the
+            // function passed to done.  The spy represents an action that would happen
+            // next (e.g. display tiddler).
+            promise.done(spy);
+
+            expect(spy.called).toBeTruthy();
+        });
+    });
+
+    describe("Get Related Tiddlers", function () {
+
+        var stubbedAjax;
+
+        beforeEach(function () {
+            stubbedAjax = sinon.stub($, "ajax");
+            twiddlers._setTitle();
+        });
+
+        afterEach(function () {
+            stubbedAjax.restore();
+        });
+
+        it("should search for the all tiddlers using the correct URI", function () {
+            twiddlers._allSearch("About");
+
+            sinon.assert.calledWithMatch(stubbedAjax, {
+                url: '/search.json?q=title:"About"',
+                headers: { 'X-ControlView': 'false' }
+            });
+        });
+
+        it("should resolve on success when searching for all tiddler", function () {
+            stubbedAjax.yieldsTo("success", [
+                // This would be a an array of complete tiddler JSON objects
+                { bag: "puss" },
+                { bag: "tea" }
+            ]);
+            var spy = sinon.spy();
+
+            var promise = twiddlers._allSearch("About");
+
+            promise.done(spy);
+
+            expect(spy.called).toBeTruthy();
+        });
+
+        it("should search for tiddlers from followers using the correct URI", function () {
+            twiddlers._followSearch(["pads", "cdent"]);
+
+            sinon.assert.calledWithMatch(stubbedAjax, {
+                url: '/search?q=title:"About"%20modifier:pads%20OR%20modifier:cdent',
+                headers: { 'X-ControlView': 'false' }
+            });
+        });
+
+        it("should resolve on success when searching for all tiddler", function () {
+            stubbedAjax.yieldsTo("success", [
+                { bag: "puss" },
+                { bag: "tea" }
+            ]);
+            var spy = sinon.spy();
+
+            var promise = twiddlers._followSearch(["pads", "cdent"]);
+
+            promise.done(spy);
+
+            expect(spy.called).toBeTruthy();
         });
     });
 });
