@@ -90,6 +90,9 @@ describe("TwiddlersCount", function () {
 
         beforeEach(function () {
             stubAjax = sinon.stub($, "ajax");
+            // A call is made to $("#title").text() to get the tiddler title
+            // This forces it to return HelloWorld.  It will be used in as the value of
+            // the title part of the query string used by search requests.
             stubText = sinon.stub($.fn, "text");
             stubText.returns("HelloWorld");
             twiddlersCount.init();
