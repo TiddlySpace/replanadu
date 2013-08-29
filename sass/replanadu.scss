@@ -4,6 +4,7 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 $black: #000b0f;
+$grey: #909b9f;
 $v_flow: 26px;
 
 @import "compass/reset";
@@ -56,7 +57,7 @@ header {
             position: absolute;
             top: $v_flow;
             padding-left: 104px;
-            color: #909b9f;
+            color: $grey;
 
             a {
                 color: $black;
@@ -101,7 +102,7 @@ header {
             width: $v_flow;
             height: $v_flow;
             background: transparent;
-            color: #909b9f;
+            color: $grey;
             right: 0px;
             top: 0px;
         }
