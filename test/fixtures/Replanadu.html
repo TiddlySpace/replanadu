@@ -1,0 +1,42 @@
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<nav class="tsbar"></nav>
+<header>
+    <script id="tiddler-header-template" type="text/x-handlebars-template">
+        <h1 id="tiddler-title" class="title">
+            <a href="{{ getSpaceURI user }}/{{ title }}">{{{ title }}}</a>
+        </h1>
+    </script>
+</header>
+<div class="wrapper">
+    <section>
+        <article id="local" class="tiddler original">
+            <script id="tiddler-template" type="text/x-handlebars-template">
+                {{{ html }}}
+            </script>
+        </article>
+    </section>
+    <section>
+        <section id="relatedlist" class="pairs">
+            <script id="related-list-template" type="text/x-handlebars-template">
+                <ul>
+                    {{#each tiddlers}}
+                    <li>
+                        <a href="{{ getSpaceURI this.modifier }}">
+                            <img src="{{ getSpaceURI this.modifier }}/SiteIcon"/>
+                        </a>
+                        <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
+                        <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
+                        <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
+                        <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
+                        <button class="close-button" title="Dismiss tiddler"></button>
+                        <article class="pair-content tiddler"></article>
+                    </li>
+                    {{/each}}
+                </ul>
+            </script>
+        </section>
+    </section>
+</div>

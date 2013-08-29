@@ -163,7 +163,7 @@ Twiddlers.prototype._registerHandlebarsHelpers = function () {
 
     Handlebars.registerHelper('getSpaceURI', function (context) {
         var spaceName = Handlebars.helpers.getSpaceName(context);
-        return _this.serverHost.scheme + '://' + spaceName + '.' + app.serverHost.host;
+        return _this.serverHost.scheme + '://' + spaceName + '.' + _this.serverHost.host;
     });
 
     Handlebars.registerHelper('dateString', function (context) {
