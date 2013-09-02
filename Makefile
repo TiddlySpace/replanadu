@@ -22,7 +22,7 @@ testlib:
 	$(call download, "test/lib/jasmine.css", \
 		"https://raw.github.com/pivotal/jasmine/v1.3.1/lib/jasmine-core/jasmine.css")
 	$(call download, "test/lib/jasmine-jquery.js", \
-		"https://raw.github.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js")
+		"https://raw.github.com/velesin/jasmine-jquery/1.5.7/lib/jasmine-jquery.js")
 	$(call download, "test/lib/sinon-1.7.3.js", \
 		"http://sinonjs.org/releases/sinon-1.7.3.js")
 	$(call download, "test/lib/run-jasmine.js", \
