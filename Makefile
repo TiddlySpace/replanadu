@@ -32,7 +32,6 @@ testlib:
 	$(call download, "test/lib/jasmine-blanket.js", \
 		"https://raw.github.com/alex-seville/blanket/master/src/adapters/jasmine-blanket.js")
 
-
 compass:
 	compass compile
 
@@ -53,3 +52,6 @@ phantomjs:
 
 test: testlib phantomjs
 	phantomjs test/lib/run-jasmine.js test/SpecRunner.html
+
+build:
+	make clean lib compass lint test

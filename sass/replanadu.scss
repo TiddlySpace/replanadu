@@ -43,6 +43,11 @@ header {
     position: relative;
 }
 
+#local textarea {
+    height: 400px;
+    width: 100%;
+}
+
 .pairs {
     position: absolute;
     right: 0; top: 0;
