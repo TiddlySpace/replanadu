@@ -121,7 +121,7 @@ Twiddlers.prototype._getFollowers = function () {
 
 Twiddlers.prototype._search = function (url) {
     var context = this;
-    var deferred = new $.Deferred()
+    var deferred = new $.Deferred();
     var success = function (data, status, xhr) {
         deferred.resolveWith(context, [data]);
     };
