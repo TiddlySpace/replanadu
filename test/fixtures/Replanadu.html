@@ -1,6 +1,5 @@
 <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <nav class="tsbar"></nav>
 <header>
@@ -13,8 +12,18 @@
 <div class="wrapper">
     <section>
         <article id="local" class="tiddler original">
-            <script id="tiddler-template" type="text/x-handlebars-template">
+            <script id="tiddler-view-template" type="text/x-handlebars-template">
+                <section class="action-buttons">
+                    <button class="edit-button">Edit</button>
+                </section>
                 {{{ html }}}
+            </script>
+            <script id="tiddler-edit-template" type="text/x-handlebars-template">
+                <section class="action-buttons">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="save-button">Save</button>
+                </section>
+                <textarea>{{{ text }}}</textarea>
             </script>
         </article>
     </section>
@@ -25,13 +34,15 @@
                     {{#each tiddlers}}
                     <li>
                         <a href="{{ getSpaceURI this.modifier }}">
-                            <img src="{{ getSpaceURI this.modifier }}/SiteIcon"/>
+                            <img src="{{ getSpaceURI this.modifier }}/SiteIcon" />
                         </a>
-                        <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
-                        <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
-                        <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
+                        <div class="meta">
+                            <a href="{{ getSpaceURI this.modifier }}">@{{ this.modifier }}</a> at
+                            <a href="{{ getSpaceURI this.bag }}">@{{ getSpaceName this.bag }}</a>
+                            <abbr class="timeago" title="{{ dateString this.modified }}"></abbr>
+                        </div>
                         <button data-uri="{{ this.uri }}" class="tiddler-button"></button>
-                        <button class="close-button" title="Dismiss tiddler"></button>
+                        <button class="close-button" title="Dismiss tiddler">x</button>
                         <article class="pair-content tiddler"></article>
                     </li>
                     {{/each}}
