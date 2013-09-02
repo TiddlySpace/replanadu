@@ -35,7 +35,9 @@ testlib:
 compass:
 	compass compile
 
-deploy: lib compass lint test
+deploy: lib compass lint test push
+
+push: 
 	@for asset in $(ASSETS); do tsapp push_hard replanadu_public `echo $$asset | cut -d '/' -f 2` ; done
 	tsapp push_hard replanadu_public replanadu.html
 

@@ -1,2 +1,3 @@
 install: "gem install compass"
 script: "make clean lib compass lint test"
+after_success: "make deploy"
