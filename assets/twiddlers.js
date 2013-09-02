@@ -15,17 +15,18 @@ Twiddlers.prototype.init = function () {
     this._setTitle();
     this._bindUIEvents();
     this._registerHandlebarsHelpers();
+    this._allSearch(this.title).done(this._displayRelated);
+    this.loadLocalTiddler();
 };
 
 Twiddlers.prototype._getTemplate = function (id) {
     return Handlebars.compile($(id).html());
 };
 
-Twiddlers.prototype.getTwiddlers = function () {
+Twiddlers.prototype.loadLocalTiddler = function () {
     var context = this;
     this._getLocalTiddler(this.title).done(function (data) {
         context._displayViewTiddler(data);
-        context._allSearch(context.title).done(context._displayRelated);
     });
 };
 
@@ -82,6 +83,21 @@ Twiddlers.prototype._getTiddler = function (title, success) {
     this._doGET('/' + encodeURIComponent(title) + '?render=1', success, this._ajaxError);
 };
 
+Twiddlers.prototype.saveTiddler = function() {
+    var context = this;
+    var success = function (data) {
+        context.loadLocalTiddler();
+    };    
+    var tiddler = this.tiddler;
+    tiddler.text = $('#local textarea').val();
+    this._saveTiddler(tiddler, success, this._ajaxError);
+};
+
+Twiddlers.prototype._saveTiddler = function(tiddler, success, error) {
+    delete tiddler.render;
+    this._doPUT('/bags/' + tiddler.bag + '/tiddlers/' + encodeURIComponent(tiddler.title), tiddler, success, error);
+};
+
 // XXX: somewhat dupe from TwiddlersCount!
 // Only do this if the currentUser is not GUEST
 Twiddlers.prototype._getFollowers = function () {
@@ -136,6 +152,19 @@ Twiddlers.prototype._doGET = function (url, success, error) {
     });
 };
 
+Twiddlers.prototype._doPUT = function (url, data, success, error) {
+    $.ajax({
+        url: url,
+        type: 'PUT',
+        success: success,
+        error: error,
+        headers: { 'X-ControlView': 'false' },
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(data)
+    });
+};
+
 Twiddlers.prototype._bindUIEvents = function () {
     $(document).on('click', '.tiddler-button', function () {
         var $button = $(this);
@@ -160,7 +189,7 @@ Twiddlers.prototype._bindUIEvents = function () {
        app._displayViewTiddler(app.tiddler); 
     });
     $(document).on('click', '.save-button', function () {
-        
+        app.saveTiddler();
     });    
     $(document).on('click', '.close-button', function () {
         var $listItem = $(this).parent();
