@@ -1,10 +1,12 @@
 function Twiddlers(tiddlyweb) {
     this.title = undefined;
     this.bag = undefined;
+    this.tiddler = undefined;
     this.currentUser = tiddlyweb.status.username;
     this.serverHost = tiddlyweb.status.server_host;
     this.headerTemplate = this._getTemplate('#tiddler-header-template');
-    this.tiddlerTemplate = this._getTemplate('#tiddler-template');
+    this.tiddlerViewTemplate = this._getTemplate('#tiddler-view-template');
+    this.tiddlerEditTemplate = this._getTemplate('#tiddler-edit-template');
     this.listTemplate = this._getTemplate('#related-list-template');
     this.followers = [];
 }
@@ -22,7 +24,7 @@ Twiddlers.prototype._getTemplate = function (id) {
 Twiddlers.prototype.getTwiddlers = function () {
     var context = this;
     this._getLocalTiddler(this.title).done(function (data) {
-        context._displayTiddler(data);
+        context._displayViewTiddler(data);
         context._allSearch(context.title).done(context._displayRelated);
     });
 };
@@ -45,21 +47,25 @@ Twiddlers.prototype._filterOutOriginalTiddler = function (tiddlers, originalBag)
     });
 };
 
-Twiddlers.prototype._displayTiddler = function (tiddler) {
+Twiddlers.prototype._displayViewTiddler = function (tiddler) {
     $('header').html(this.headerTemplate({title: tiddler.title, user: this.currentUser }));
-    $('#local').html(this.tiddlerTemplate({ html: tiddler.render }));
+    $('#local').html(this.tiddlerViewTemplate({ html: tiddler.render }));
+};
+
+Twiddlers.prototype._displayEditTiddler = function (tiddler) {
+    $('header').html(this.headerTemplate({title: tiddler.title, user: this.currentUser }));
+    $('#local').html(this.tiddlerEditTemplate({ text: tiddler.text }));
 };
 
 Twiddlers.prototype._getLocalTiddler = function (title) {
     var deferred = new $.Deferred();
-
     var context = this;
     var success = function (data) {
         context.bag = data.bag;
         deferred.resolve(data);
+        context.tiddler = data;
     };
     this._getTiddler(title, success);
-
     return deferred.promise();
 };
 
@@ -100,12 +106,10 @@ Twiddlers.prototype._getFollowers = function () {
 Twiddlers.prototype._search = function (url) {
     var context = this;
     var deferred = new $.Deferred()
-
     var success = function (data, status, xhr) {
         deferred.resolveWith(context, [data]);
     };
     this._doGET(url, success, this._ajaxError);
-
     return deferred.promise();
 };
 
@@ -149,7 +153,15 @@ Twiddlers.prototype._bindUIEvents = function () {
             }
         }
     });
-
+    $(document).on('click', '.edit-button', function () {
+        app._displayEditTiddler(app.tiddler);
+    });
+    $(document).on('click', '.cancel-button', function () {
+       app._displayViewTiddler(app.tiddler); 
+    });
+    $(document).on('click', '.save-button', function () {
+        
+    });    
     $(document).on('click', '.close-button', function () {
         var $listItem = $(this).parent();
         $listItem.animate({ left: "+=110%" }, 600, "linear", function() {

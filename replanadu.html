@@ -28,9 +28,19 @@
         <div class="wrapper">
         <section>
             <article id="local" class="tiddler original">
-                <script id="tiddler-template" type="text/x-handlebars-template">
+                <script id="tiddler-view-template" type="text/x-handlebars-template">
+                    <section class="action-buttons">
+                        <button class="edit-button">Edit</button>
+                    </section>
                     {{{ html }}}
                 </script>
+                <script id="tiddler-edit-template" type="text/x-handlebars-template">
+                    <section class="action-buttons">
+                        <button class="cancel-button">Cancel</button>
+                        <button class="save-button">Save</button>
+                    </section>
+                    <textarea>{{{ text }}}</textarea>
+                </script>                
             </article>
         </section>
         <section>
