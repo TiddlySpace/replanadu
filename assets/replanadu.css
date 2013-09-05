@@ -157,45 +157,45 @@ body #app-picker {
   list-style: decimal;
 }
 
-/* line 14, ../sass/replanadu.scss */
+/* line 16, ../sass/replanadu.scss */
 body {
   width: 1080px;
   margin: 0 auto;
   font-size: 18px;
 }
 
-/* line 20, ../sass/replanadu.scss */
+/* line 22, ../sass/replanadu.scss */
 a {
   text-decoration: none;
 }
 
-/* line 24, ../sass/replanadu.scss */
+/* line 26, ../sass/replanadu.scss */
 .title {
   font-size: 68px;
 }
-/* line 27, ../sass/replanadu.scss */
+/* line 29, ../sass/replanadu.scss */
 .title a {
   text-decoration: none;
   color: #000b0f;
 }
 
-/* line 33, ../sass/replanadu.scss */
+/* line 35, ../sass/replanadu.scss */
 header {
   margin: 92px 0 52px;
 }
 
-/* line 37, ../sass/replanadu.scss */
+/* line 39, ../sass/replanadu.scss */
 .wrapper {
   position: relative;
 }
 
-/* line 41, ../sass/replanadu.scss */
+/* line 43, ../sass/replanadu.scss */
 .original {
   width: 600px;
   position: relative;
 }
 
-/* line 46, ../sass/replanadu.scss */
+/* line 48, ../sass/replanadu.scss */
 #local textarea {
   height: 400px;
   width: 99%;
@@ -205,43 +205,43 @@ header {
   border: 2px dashed #909b9f;
 }
 
-/* line 55, ../sass/replanadu.scss */
+/* line 57, ../sass/replanadu.scss */
 .pairs {
   position: absolute;
   right: 0;
   top: 0;
   width: 454px;
 }
-/* line 60, ../sass/replanadu.scss */
+/* line 62, ../sass/replanadu.scss */
 .pairs li {
   border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
   padding: 13px;
   position: relative;
 }
-/* line 65, ../sass/replanadu.scss */
+/* line 67, ../sass/replanadu.scss */
 .pairs li .meta {
   position: absolute;
   top: 26px;
   padding-left: 104px;
   color: #909b9f;
 }
-/* line 71, ../sass/replanadu.scss */
+/* line 73, ../sass/replanadu.scss */
 .pairs li .meta a {
   color: #000b0f;
 }
-/* line 75, ../sass/replanadu.scss */
+/* line 77, ../sass/replanadu.scss */
 .pairs li .meta abbr {
   display: block;
   line-height: 26px;
 }
-/* line 81, ../sass/replanadu.scss */
+/* line 83, ../sass/replanadu.scss */
 .pairs li img {
   width: 78px;
   height: 78px;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
-/* line 88, ../sass/replanadu.scss */
+/* line 90, ../sass/replanadu.scss */
 .pairs li button {
   border: 0;
   outline: none;
@@ -249,21 +249,21 @@ header {
   right: 0;
   top: 42px;
 }
-/* line 95, ../sass/replanadu.scss */
+/* line 97, ../sass/replanadu.scss */
 .pairs li button:hover {
   cursor: pointer;
 }
-/* line 100, ../sass/replanadu.scss */
+/* line 102, ../sass/replanadu.scss */
 .pairs li .tiddler-button {
   width: 52px;
   height: 52px;
   background: url(/down-tsgrey.png) no-repeat transparent;
 }
-/* line 105, ../sass/replanadu.scss */
+/* line 107, ../sass/replanadu.scss */
 .pairs li .tiddler-button.open {
   background: url(/up-tsgrey.png) no-repeat transparent;
 }
-/* line 110, ../sass/replanadu.scss */
+/* line 112, ../sass/replanadu.scss */
 .pairs li .close-button {
   width: 26px;
   height: 26px;
@@ -273,7 +273,32 @@ header {
   top: 0px;
 }
 
-/* line 121, ../sass/replanadu.scss */
+/* line 123, ../sass/replanadu.scss */
+section.action-buttons {
+  padding: 0;
+}
+/* line 126, ../sass/replanadu.scss */
+section.action-buttons button {
+  outline: 0;
+  border: none;
+  background: #0082af;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.625em;
+  margin: 0;
+  padding: 0 0.5em;
+}
+/* line 137, ../sass/replanadu.scss */
+section.action-buttons button:hover {
+  cursor: pointer;
+}
+/* line 141, ../sass/replanadu.scss */
+section.action-buttons button.cancel-button {
+  background: #cc1441;
+}
+
+/* line 147, ../sass/replanadu.scss */
 .open ~ .pair-content {
   padding: 13px 4px 0;
 }

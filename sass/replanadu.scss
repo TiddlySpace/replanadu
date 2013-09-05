@@ -5,6 +5,8 @@
 
 $black: #000b0f;
 $grey: #909b9f;
+$ts_blue: #0082af;
+$red: #CC1441;
 $v_flow: 26px;
 
 @import "compass/reset";
@@ -114,6 +116,30 @@ header {
             color: $grey;
             right: 0px;
             top: 0px;
+        }
+    }
+}
+
+section.action-buttons {
+    padding: 0;
+    
+    button {
+        outline: 0;
+        border: none;
+        background: $ts_blue;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 16px;
+        line-height: 1.625em;
+        margin: 0;
+        padding: 0 0.5em;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.cancel-button {
+            background: $red;
         }
     }
 }
