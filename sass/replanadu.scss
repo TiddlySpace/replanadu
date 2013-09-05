@@ -45,7 +45,11 @@ header {
 
 #local textarea {
     height: 400px;
-    width: 100%;
+    width: 99%;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 0.5em;
+    border: 2px dashed $grey;
 }
 
 .pairs {
