@@ -31,7 +31,7 @@ Twiddlers.prototype.loadLocalTiddler = function () {
 };
 
 Twiddlers.prototype._setTitle = function () {
-    this.title = document.location.hash.substring(1);
+    this.title = decodeURIComponent(document.location.hash.substring(1));
 };
 
 Twiddlers.prototype._displayRelated = function (tiddlers) {
