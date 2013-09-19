@@ -190,7 +190,13 @@ Twiddlers.prototype._bindUIEvents = function () {
     });
     $(document).on('click', '.save-button', function () {
         app.saveTiddler();
-    });    
+    });
+    $(document).on('keydown', 'textarea', function(e) {
+        if( e.ctrlKey && e.keyCode === 13) {
+            e.preventDefault();
+            app.saveTiddler();
+        }
+    });
     $(document).on('click', '.close-button', function () {
         var $listItem = $(this).parent();
         $listItem.animate({ left: "+=110%" }, 600, "linear", function() {
