@@ -47,7 +47,8 @@ Twiddlers.prototype._displayRelated = function (tiddlers) {
 Twiddlers.prototype._filterOutOriginalTiddler = function (tiddlers, originalBag) {
     //TODO: provide implementation for IE < 9?
     return tiddlers.filter(function (tiddler) {
-        return tiddler.bag !== originalBag;
+        return (tiddler.bag !== originalBag
+            && !tiddler.bag.match(/_private$/)) ;
     });
 };
 
