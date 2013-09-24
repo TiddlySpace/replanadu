@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,45 +24,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -222,7 +222,7 @@ header {
 .pairs li .meta {
   position: absolute;
   top: 26px;
-  padding-left: 104px;
+  left: 117px;
   color: #909b9f;
 }
 /* line 73, ../sass/replanadu.scss */
@@ -235,13 +235,19 @@ header {
   line-height: 26px;
 }
 /* line 83, ../sass/replanadu.scss */
-.pairs li img {
+.pairs li > a {
   width: 78px;
   height: 78px;
+  display: block;
+}
+/* line 89, ../sass/replanadu.scss */
+.pairs li img {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
-/* line 90, ../sass/replanadu.scss */
+/* line 96, ../sass/replanadu.scss */
 .pairs li button {
   border: 0;
   outline: none;
@@ -249,21 +255,21 @@ header {
   right: 0;
   top: 42px;
 }
-/* line 97, ../sass/replanadu.scss */
+/* line 103, ../sass/replanadu.scss */
 .pairs li button:hover {
   cursor: pointer;
 }
-/* line 102, ../sass/replanadu.scss */
+/* line 108, ../sass/replanadu.scss */
 .pairs li .tiddler-button {
   width: 52px;
   height: 52px;
   background: url(/down-tsgrey.png) no-repeat transparent;
 }
-/* line 107, ../sass/replanadu.scss */
+/* line 113, ../sass/replanadu.scss */
 .pairs li .tiddler-button.open {
   background: url(/up-tsgrey.png) no-repeat transparent;
 }
-/* line 112, ../sass/replanadu.scss */
+/* line 118, ../sass/replanadu.scss */
 .pairs li .close-button {
   width: 26px;
   height: 26px;
@@ -273,11 +279,11 @@ header {
   top: 0px;
 }
 
-/* line 123, ../sass/replanadu.scss */
+/* line 129, ../sass/replanadu.scss */
 section.action-buttons {
   padding: 0;
 }
-/* line 126, ../sass/replanadu.scss */
+/* line 132, ../sass/replanadu.scss */
 section.action-buttons button {
   outline: 0;
   border: none;
@@ -289,16 +295,16 @@ section.action-buttons button {
   margin: 0;
   padding: 0 0.5em;
 }
-/* line 137, ../sass/replanadu.scss */
+/* line 143, ../sass/replanadu.scss */
 section.action-buttons button:hover {
   cursor: pointer;
 }
-/* line 141, ../sass/replanadu.scss */
+/* line 147, ../sass/replanadu.scss */
 section.action-buttons button.cancel-button {
   background: #cc1441;
 }
 
-/* line 147, ../sass/replanadu.scss */
+/* line 153, ../sass/replanadu.scss */
 .open ~ .pair-content {
   padding: 13px 4px 0;
 }
