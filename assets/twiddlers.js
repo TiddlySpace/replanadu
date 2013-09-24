@@ -12,21 +12,24 @@ function Twiddlers(tiddlyweb) {
 }
 
 Twiddlers.prototype.init = function () {
+    var context = this;
     this._setTitle();
     this._bindUIEvents();
     this._registerHandlebarsHelpers();
-    this._allSearch(this.title).done(this._displayRelated);
-    this.loadLocalTiddler();
+    this.loadLocalTiddler(function() {
+        context._allSearch(context.title).done(context._displayRelated);
+    });
 };
 
 Twiddlers.prototype._getTemplate = function (id) {
     return Handlebars.compile($(id).html());
 };
 
-Twiddlers.prototype.loadLocalTiddler = function () {
+Twiddlers.prototype.loadLocalTiddler = function (next) {
     var context = this;
     this._getLocalTiddler(this.title).done(function (data) {
         context._displayViewTiddler(data);
+        next();
     });
 };
 
