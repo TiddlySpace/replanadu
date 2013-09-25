@@ -54,7 +54,9 @@ Twiddlers.prototype._filterOutOriginalTiddler = function (tiddlers, originalBag)
 
 Twiddlers.prototype._displayViewTiddler = function (tiddler) {
     $('header').html(this.headerTemplate({title: tiddler.title, user: this.currentUser }));
-    $('#local').html(this.tiddlerViewTemplate({ html: tiddler.render }));
+    $('#local')
+        .toggleClass('editable', $.inArray('write', tiddler.permissions) !== -1)
+        .html(this.tiddlerViewTemplate({ html: tiddler.render }));
 };
 
 Twiddlers.prototype._displayEditTiddler = function (tiddler) {
