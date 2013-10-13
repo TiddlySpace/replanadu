@@ -83,8 +83,12 @@ Twiddlers.prototype.loadTiddler = function (uri, elem) {
 		sourceHost = uri.substring(0, splitIndex),
 		success = function (data) {
 			$(elem).hide().html(data.render).slideDown();
-			$(elem).find('a.tiddlyLink').attr('href', function(index, val) {
-				return sourceHost + val;
+			$(elem).find('a.tiddlyLink, a.wikilink').attr('href', function(index, val) {
+				if (! val.match('/')) {
+					return sourceHost + val;
+				} else {
+					return val;
+				}
 			});
 		};
 
