@@ -77,12 +77,18 @@ Twiddlers.prototype._getLocalTiddler = function (title) {
 };
 
 Twiddlers.prototype.loadTiddler = function (uri, elem) {
-    var success = function (data) {
-        $(elem).hide().html(data.render).slideDown();
-    };
-    var match = 'tiddlyspace.com/';
-    uri = uri.substring(uri.indexOf(match) + match.length) + '?render=1';
-    this._doGET(uri, success, this._ajaxError);
+    var match = this.serverHost.host +  '/',
+		splitIndex = uri.indexOf(match) + match.length,
+		getURI = uri.substring(splitIndex - 1) + '?render=1',
+		sourceHost = uri.substring(0, splitIndex),
+		success = function (data) {
+			$(elem).hide().html(data.render).slideDown();
+			$(elem).find('a.tiddlyLink').attr('href', function(index, val) {
+				return sourceHost + val;
+			});
+		};
+
+    this._doGET(getURI, success, this._ajaxError);
 };
 
 Twiddlers.prototype._getTiddler = function (title, success) {
