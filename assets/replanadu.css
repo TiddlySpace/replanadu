@@ -282,8 +282,9 @@ header {
 /* line 129, ../sass/replanadu.scss */
 section.action-buttons {
   padding: 0;
+  visibility: hidden;
 }
-/* line 132, ../sass/replanadu.scss */
+/* line 133, ../sass/replanadu.scss */
 section.action-buttons button {
   outline: 0;
   border: none;
@@ -295,16 +296,20 @@ section.action-buttons button {
   margin: 0;
   padding: 0 0.5em;
 }
-/* line 143, ../sass/replanadu.scss */
+/* line 144, ../sass/replanadu.scss */
 section.action-buttons button:hover {
   cursor: pointer;
 }
-/* line 147, ../sass/replanadu.scss */
+/* line 148, ../sass/replanadu.scss */
 section.action-buttons button.cancel-button {
   background: #cc1441;
 }
-
 /* line 153, ../sass/replanadu.scss */
+.editable section.action-buttons {
+  visibility: visible;
+}
+
+/* line 158, ../sass/replanadu.scss */
 .open ~ .pair-content {
   padding: 13px 4px 0;
 }
