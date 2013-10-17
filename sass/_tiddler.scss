@@ -69,5 +69,27 @@
     ol {
         list-style: decimal;
     }
+    blockquote {
+        position: relative;
+        color: #333;
+        padding: 0 1.5em;
+        margin-left: 0.72em;
+
+        &:before, &:after {
+            position: absolute;
+            opacity: 0.5;
+            font-size: 2em;
+        }
+        &:before {
+            content: '“';
+            top:  0;
+            left: 0;
+        }
+        &:after {
+            content: '”';
+            bottom: 0;
+            right: 0;
+        }
+    }
 }
 
