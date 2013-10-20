@@ -181,6 +181,22 @@ body #app-picker {
   bottom: 0;
   right: 0;
 }
+/* line 94, ../sass/_tiddler.scss */
+.tiddler dl {
+  line-height: 1.5em;
+}
+/* line 97, ../sass/_tiddler.scss */
+.tiddler dl dt {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0;
+}
+/* line 102, ../sass/_tiddler.scss */
+.tiddler dl dd {
+  border: 0;
+  font-weight: 200;
+  padding: 0 0 0 0.5em;
+}
 
 /* line 16, ../sass/replanadu.scss */
 body {
